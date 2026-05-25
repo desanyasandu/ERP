@@ -1,0 +1,48 @@
+datasource db {
+  provider = "sqlite"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model RawMaterial {
+  id         String   @id @default(cuid())
+  name       String
+  stock      Float
+  expiryDate DateTime
+  createdAt  DateTime @default(now())
+}
+
+model Expense {
+  id        String   @id @default(cuid())
+  type      String
+  amount    Float
+  date      DateTime
+  createdAt DateTime @default(now())
+}
+
+model FinishedGood {
+  id          String   @id @default(cuid())
+  batchNumber String   @unique
+  stock       Int
+  mfgDate     DateTime
+  expDate     DateTime
+  createdAt   DateTime @default(now())
+}
+
+model LorryInventory {
+  id        String   @id @default(cuid())
+  lorryId   String
+  items     String   // Store inventory item manifest (e.g. JSON string or comma-separated SKUs)
+  status    String   // Allowed values: "In_Transit" or "Returned"
+  createdAt DateTime @default(now())
+}
+
+model PettyCash {
+  id         String   @id @default(cuid())
+  driverName String
+  amount     Float
+  reason     String
+  createdAt  DateTime @default(now())
+}
