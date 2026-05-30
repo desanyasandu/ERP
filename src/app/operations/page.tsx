@@ -30,7 +30,6 @@ import {
   DialogTitle,
   DialogTrigger
 } from "@/components/ui/dialog"
-
 export default function OperationsPage() {
   const searchParams = useSearchParams()
   const router = useRouter()
@@ -331,7 +330,7 @@ export default function OperationsPage() {
                       ? tab.badge === "rose"
                         ? "bg-rose-50 dark:bg-rose-950/40 text-rose-650 dark:text-rose-455 font-extrabold"
                         : "bg-indigo-50 dark:bg-indigo-950/40 text-indigo-650 dark:text-indigo-400 font-extrabold"
-                      : "text-slate-600 hover:text-slate-950 dark:text-slate-350 dark:hover:text-white hover:bg-slate-50/50 dark:hover:bg-slate-800/30"
+                      : "text-slate-600 hover:text-slate-950 dark:text-slate-355 dark:hover:text-white hover:bg-slate-50/50 dark:hover:bg-slate-800/30"
                   }`}
                 >
                   <span className="flex items-center gap-2.5">
@@ -351,13 +350,13 @@ export default function OperationsPage() {
           {/* SEARCH & ACTION CONTROL BAR */}
           <div className="flex flex-col sm:flex-row gap-3 items-center justify-between bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm">
             <div className="relative w-full sm:max-w-xs">
-              <Search className="absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-slate-400" />
+              <Search className="absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-slate-400 dark:text-slate-500" />
               <Input
                 type="search"
                 placeholder="සොයන්න..."
                 value={searchTerm}
                 onChange={e => setSearchTerm(e.target.value)}
-                className="w-full pl-8 pr-3 h-9 text-xs rounded-xl bg-slate-50 border-slate-200 focus-visible:bg-white"
+                className="w-full pl-8 pr-3 h-9 text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 focus-visible:bg-white dark:focus-visible:bg-slate-850"
               />
             </div>
             
@@ -369,20 +368,20 @@ export default function OperationsPage() {
                     <Plus className="w-4 h-4" /> නව ගනුදෙනුකරුවෙකු එක් කරන්න
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="max-w-md bg-white text-slate-900 rounded-2xl">
+                <DialogContent className="max-w-md bg-white dark:bg-slate-900 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-800 rounded-2xl">
                   <DialogHeader>
-                    <DialogTitle className="text-base font-extrabold">නව ගනුදෙනුකරුවෙකු ලියාපදිංචි කිරීම</DialogTitle>
-                    <DialogDescription className="text-xs">පද්ධතියට නව බෙදාහැරීම් අලෙවිසැලක් හෝ ගැනුම්කරුවෙකු ඇතුළත් කරන්න.</DialogDescription>
+                    <DialogTitle className="text-base font-extrabold text-slate-900 dark:text-white">නව ගනුදෙනුකරුවෙකු ලියාපදිංචි කිරීම</DialogTitle>
+                    <DialogDescription className="text-xs text-slate-500 dark:text-slate-400">පද්ධතියට නව බෙදාහැරීම් අලෙවිසැලක් හෝ ගැනුම්කරුවෙකු ඇතුළත් කරන්න.</DialogDescription>
                   </DialogHeader>
                   <form onSubmit={handleAddClient} className="space-y-4 pt-2">
                     <div className="space-y-1">
-                      <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">ගනුදෙනුකරුගේ නම (Client Name)</label>
-                      <Input required value={newClientName} onChange={e => setNewClientName(e.target.value)} placeholder="උදා: Keells Super - Malabe" className="rounded-xl text-xs" />
+                      <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">ගනුදෙනුකරුගේ නම (Client Name)</label>
+                      <Input required value={newClientName} onChange={e => setNewClientName(e.target.value)} placeholder="උදා: Keells Super - Malabe" className="rounded-xl text-xs bg-white dark:bg-slate-850 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white" />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-1">
-                        <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">මාර්ගය (Route/Zone)</label>
-                        <select value={newClientRoute} onChange={e => setNewClientRoute(e.target.value)} className="w-full p-2 border border-slate-200 rounded-xl text-xs bg-slate-50">
+                        <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">මාර්ගය (Route/Zone)</label>
+                        <select value={newClientRoute} onChange={e => setNewClientRoute(e.target.value)} className="w-full p-2 border border-slate-200 dark:border-slate-800 rounded-xl text-xs bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-200">
                           <option value="Western - Colombo">Western - Colombo</option>
                           <option value="Western - Gampaha">Western - Gampaha</option>
                           <option value="Southern - Galle">Southern - Galle</option>
@@ -390,13 +389,13 @@ export default function OperationsPage() {
                         </select>
                       </div>
                       <div className="space-y-1">
-                        <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">දුරකථන අංකය</label>
-                        <Input required value={newClientPhone} onChange={e => setNewClientPhone(e.target.value)} placeholder="077-XXXXXXX" className="rounded-xl text-xs" />
+                        <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">දුරකථන අංකය</label>
+                        <Input required value={newClientPhone} onChange={e => setNewClientPhone(e.target.value)} placeholder="077-XXXXXXX" className="rounded-xl text-xs bg-white dark:bg-slate-850 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white" />
                       </div>
                     </div>
                     <div className="space-y-1">
-                      <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">ආරම්භක හිඟ මුදල Rs. (Outstanding)</label>
-                      <Input type="number" value={newClientOutstanding} onChange={e => setNewClientOutstanding(e.target.value)} placeholder="0.00" className="rounded-xl text-xs" />
+                      <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">ආරම්භක හිඟ මුදල Rs. (Outstanding)</label>
+                      <Input type="number" value={newClientOutstanding} onChange={e => setNewClientOutstanding(e.target.value)} placeholder="0.00" className="rounded-xl text-xs bg-white dark:bg-slate-850 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white" />
                     </div>
                     <DialogFooter className="pt-2">
                       <Button type="button" variant="ghost" onClick={() => setIsClientModalOpen(false)} className="rounded-xl text-xs">අවලංගු කරන්න</Button>
@@ -414,25 +413,25 @@ export default function OperationsPage() {
                     <Plus className="w-4 h-4" /> නව විකුණුම් ඇනවුමක් ලොග් කරන්න
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="max-w-md bg-white text-slate-900 rounded-2xl">
+                <DialogContent className="max-w-md bg-white dark:bg-slate-900 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-800 rounded-2xl">
                   <DialogHeader>
-                    <DialogTitle className="text-base font-extrabold">නව විකුණුම් ඇනවුමක් එක් කිරීම</DialogTitle>
-                    <DialogDescription className="text-xs">ඇනවුම් කළ අයිතම සහ මුළු වටිනාකම ලියාපදිංචි කරන්න.</DialogDescription>
+                    <DialogTitle className="text-base font-extrabold text-slate-900 dark:text-white">නව විකුණුම් ඇනවුමක් එක් කිරීම</DialogTitle>
+                    <DialogDescription className="text-xs text-slate-500 dark:text-slate-400">ඇනවුම් කළ අයිතම සහ මුළු වටිනාකම ලියාපදිංචි කරන්න.</DialogDescription>
                   </DialogHeader>
                   <form onSubmit={handleAddSale} className="space-y-4 pt-2">
                     <div className="space-y-1">
-                      <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">ගනුදෙනුකරු (Client)</label>
-                      <select value={newSaleClient} onChange={e => setNewSaleClient(e.target.value)} className="w-full p-2 border border-slate-200 rounded-xl text-xs bg-slate-50">
+                      <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">ගනුදෙනුකරු (Client)</label>
+                      <select value={newSaleClient} onChange={e => setNewSaleClient(e.target.value)} className="w-full p-2 border border-slate-200 dark:border-slate-800 rounded-xl text-xs bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-200">
                         {clients.map(c => <option key={c.id} value={c.name}>{c.name}</option>)}
                       </select>
                     </div>
                     <div className="space-y-1">
-                      <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">ඇනවුම් අයිතම (Order Details)</label>
-                      <Input required value={newSaleItems} onChange={e => setNewSaleItems(e.target.value)} placeholder="උදා: සෝයාමීට් පැකට් x 200, පොල්තෙල් x 50" className="rounded-xl text-xs" />
+                      <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">ඇනවුම් අයිතම (Order Details)</label>
+                      <Input required value={newSaleItems} onChange={e => setNewSaleItems(e.target.value)} placeholder="උදා: සෝයාමීට් පැකට් x 200, පොල්තෙල් x 50" className="rounded-xl text-xs bg-white dark:bg-slate-850 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white" />
                     </div>
                     <div className="space-y-1">
-                      <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">මුළු ඇනවුම් වටිනාකම Rs.</label>
-                      <Input type="number" required value={newSaleAmount} onChange={e => setNewSaleAmount(e.target.value)} placeholder="0.00" className="rounded-xl text-xs" />
+                      <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">මුළු ඇනවුම් වටිනාකම Rs.</label>
+                      <Input type="number" required value={newSaleAmount} onChange={e => setNewSaleAmount(e.target.value)} placeholder="0.00" className="rounded-xl text-xs bg-white dark:bg-slate-850 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white" />
                     </div>
                     <DialogFooter className="pt-2">
                       <Button type="button" variant="ghost" onClick={() => setIsSaleModalOpen(false)} className="rounded-xl text-xs">අවලංගු කරන්න</Button>
@@ -450,22 +449,22 @@ export default function OperationsPage() {
                     <Plus className="w-4 h-4" /> නව අයකරගැනීමක් ලොග් කරන්න
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="max-w-md bg-white text-slate-900 rounded-2xl">
+                <DialogContent className="max-w-md bg-white dark:bg-slate-900 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-800 rounded-2xl">
                   <DialogHeader>
-                    <DialogTitle className="text-base font-extrabold">නව අයකරගැනීමේ රිසිට්පතක් එක් කිරීම</DialogTitle>
-                    <DialogDescription className="text-xs">පාරිභෝගිකයාගෙන් ලැබුණු මුදල් හෝ චෙක්පත් ගෙවීම් මෙතැනින් ලොග් කරන්න.</DialogDescription>
+                    <DialogTitle className="text-base font-extrabold text-slate-900 dark:text-white">නව අයකරගැනීමේ රිසිට්පතක් එක් කිරීම</DialogTitle>
+                    <DialogDescription className="text-xs text-slate-500 dark:text-slate-400">පාරිභෝගිකයාගෙන් ලැබුණු මුදල් හෝ චෙක්පත් ගෙවීම් මෙතැනින් ලොග් කරන්න.</DialogDescription>
                   </DialogHeader>
                   <form onSubmit={handleAddRecovery} className="space-y-4 pt-2">
                     <div className="space-y-1">
-                      <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">ගනුදෙනුකරු (Client)</label>
-                      <select value={newRecClient} onChange={e => setNewRecClient(e.target.value)} className="w-full p-2 border border-slate-200 rounded-xl text-xs bg-slate-50">
+                      <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">ගනුදෙනුකරු (Client)</label>
+                      <select value={newRecClient} onChange={e => setNewRecClient(e.target.value)} className="w-full p-2 border border-slate-200 dark:border-slate-800 rounded-xl text-xs bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-200">
                         {clients.map(c => <option key={c.id} value={c.name}>{c.name}</option>)}
                       </select>
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-1">
-                        <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">ගෙවීම් ක්‍රමය (Method)</label>
-                        <select value={newRecMethod} onChange={e => setNewRecMethod(e.target.value)} className="w-full p-2 border border-slate-200 rounded-xl text-xs bg-slate-50">
+                        <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">ගෙවීම් ක්‍රමය (Method)</label>
+                        <select value={newRecMethod} onChange={e => setNewRecMethod(e.target.value)} className="w-full p-2 border border-slate-200 dark:border-slate-800 rounded-xl text-xs bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-200">
                           <option value="Cash">Cash (මුදල්)</option>
                           <option value="Cheque (BOC)">Cheque (BOC චෙක්පත)</option>
                           <option value="Cheque (Sampath)">Cheque (Sampath චෙක්පත)</option>
@@ -473,8 +472,8 @@ export default function OperationsPage() {
                         </select>
                       </div>
                       <div className="space-y-1">
-                        <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">අයකරගත් මුදල Rs.</label>
-                        <Input type="number" required value={newRecAmount} onChange={e => setNewRecAmount(e.target.value)} placeholder="0.00" className="rounded-xl text-xs" />
+                        <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">අයකරගත් මුදල Rs.</label>
+                        <Input type="number" required value={newRecAmount} onChange={e => setNewRecAmount(e.target.value)} placeholder="0.00" className="rounded-xl text-xs bg-white dark:bg-slate-850 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white" />
                       </div>
                     </div>
                     <DialogFooter className="pt-2">
@@ -493,27 +492,27 @@ export default function OperationsPage() {
                     <Plus className="w-4 h-4" /> නව තොග අයිතමයක් එක් කරන්න
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="max-w-md bg-white text-slate-900 rounded-2xl">
+                <DialogContent className="max-w-md bg-white dark:bg-slate-900 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-800 rounded-2xl">
                   <DialogHeader>
-                    <DialogTitle className="text-base font-extrabold">නව තොග අයිතමයක් (Chemical/SKU) එක් කිරීම</DialogTitle>
-                    <DialogDescription className="text-xs">අලුතින් රසායනික අමුද්‍රව්‍යයක් හෝ නිමි නිෂ්පාදන SKU එකක් ඇතුළත් කරන්න.</DialogDescription>
+                    <DialogTitle className="text-base font-extrabold text-slate-900 dark:text-white">නව තොග අයිතමයක් (Chemical/SKU) එක් කිරීම</DialogTitle>
+                    <DialogDescription className="text-xs text-slate-500 dark:text-slate-400">අලුතින් රසායනික අමුද්‍රව්‍යයක් හෝ නිමි නිෂ්පාදන SKU එකක් ඇතුළත් කරන්න.</DialogDescription>
                   </DialogHeader>
                   <form onSubmit={handleAddStock} className="space-y-4 pt-2">
                     <div className="space-y-1">
-                      <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">අයිතමයේ නම (Item Name)</label>
-                      <Input required value={newStockItemName} onChange={e => setNewStockItemName(e.target.value)} placeholder="උදා: Caustic Soda (NaOH)" className="rounded-xl text-xs" />
+                      <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">අයිතමයේ නම (Item Name)</label>
+                      <Input required value={newStockItemName} onChange={e => setNewStockItemName(e.target.value)} placeholder="උදා: Caustic Soda (NaOH)" className="rounded-xl text-xs bg-white dark:bg-slate-850 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white" />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-1">
-                        <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">අයිතමයේ වර්ගය</label>
-                        <select value={newStockType} onChange={e => setNewStockType(e.target.value)} className="w-full p-2 border border-slate-200 rounded-xl text-xs bg-slate-50">
+                        <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">අයිතමයේ වර්ගය</label>
+                        <select value={newStockType} onChange={e => setNewStockType(e.target.value)} className="w-full p-2 border border-slate-200 dark:border-slate-800 rounded-xl text-xs bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-200">
                           <option value="Chemical/Raw">Chemical/Raw (රසායනික/අමුද්‍රව්‍ය)</option>
                           <option value="Finished SKU">Finished SKU (නිමි භාණ්ඩ SKU)</option>
                         </select>
                       </div>
                       <div className="space-y-1">
-                        <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">තොග ප්‍රමාණය (Qty)</label>
-                        <Input required value={newStockQty} onChange={e => setNewStockQty(e.target.value)} placeholder="උදා: 1,500 kg / 3,000 Pkts" className="rounded-xl text-xs" />
+                        <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">තොග ප්‍රමාණය (Qty)</label>
+                        <Input required value={newStockQty} onChange={e => setNewStockQty(e.target.value)} placeholder="උදා: 1,500 kg / 3,000 Pkts" className="rounded-xl text-xs bg-white dark:bg-slate-850 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white" />
                       </div>
                     </div>
                     <DialogFooter className="pt-2">
@@ -532,19 +531,19 @@ export default function OperationsPage() {
                     <Plus className="w-4 h-4" /> නව සැපයුම්කරුවෙකු එක් කරන්න
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="max-w-md bg-white text-slate-900 rounded-2xl">
+                <DialogContent className="max-w-md bg-white dark:bg-slate-900 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-800 rounded-2xl">
                   <DialogHeader>
-                    <DialogTitle className="text-base font-extrabold">නව සැපයුම්කරුවෙකු ලියාපදිංචි කිරීම</DialogTitle>
-                    <DialogDescription className="text-xs">රසායනික ද්‍රව්‍ය හෝ ඇසුරුම් ද්‍රව්‍ය සපයනු ලබන නව ආයතනයක් ඇතුළත් කරන්න.</DialogDescription>
+                    <DialogTitle className="text-base font-extrabold text-slate-900 dark:text-white">නව සැපයුම්කරුවෙකු ලියාපදිංචි කිරීම</DialogTitle>
+                    <DialogDescription className="text-xs text-slate-500 dark:text-slate-400">රසායනික ද්‍රව්‍ය හෝ ඇසුරුම් ද්‍රව්‍ය සපයනු ලබන නව ආයතනයක් ඇතුළත් කරන්න.</DialogDescription>
                   </DialogHeader>
                   <form onSubmit={handleAddSupplier} className="space-y-4 pt-2">
                     <div className="space-y-1">
-                      <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">සැපයුම්කරුගේ නම (Supplier Name)</label>
-                      <Input required value={newSupName} onChange={e => setNewSupName(e.target.value)} placeholder="උදා: Lanka Chemical Importers PLC" className="rounded-xl text-xs" />
+                      <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">සැපයුම්කරුගේ නම (Supplier Name)</label>
+                      <Input required value={newSupName} onChange={e => setNewSupName(e.target.value)} placeholder="උදා: Lanka Chemical Importers PLC" className="rounded-xl text-xs bg-white dark:bg-slate-850 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white" />
                     </div>
                     <div className="space-y-1">
-                      <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">සපයනු ලබන ද්‍රව්‍ය (Supplied Chemicals / Items)</label>
-                      <Input required value={newSupItems} onChange={e => setNewSupItems(e.target.value)} placeholder="උදා: Caustic Soda, Food Colorings" className="rounded-xl text-xs" />
+                      <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">සපයනු ලබන ද්‍රව්‍ය (Supplied Chemicals / Items)</label>
+                      <Input required value={newSupItems} onChange={e => setNewSupItems(e.target.value)} placeholder="උදා: Caustic Soda, Food Colorings" className="rounded-xl text-xs bg-white dark:bg-slate-850 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white" />
                     </div>
                     <DialogFooter className="pt-2">
                       <Button type="button" variant="ghost" onClick={() => setIsSupModalOpen(false)} className="rounded-xl text-xs">අවලංගු කරන්න</Button>
@@ -562,20 +561,20 @@ export default function OperationsPage() {
                     <Plus className="w-4 h-4" /> නව වියදමක් ලොග් කරන්න
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="max-w-md bg-white text-slate-900 rounded-2xl">
+                <DialogContent className="max-w-md bg-white dark:bg-slate-900 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-800 rounded-2xl">
                   <DialogHeader>
-                    <DialogTitle className="text-base font-extrabold">නව වියදමක් ලියාපදිංචි කිරීම</DialogTitle>
-                    <DialogDescription className="text-xs">මෙහෙයුම්, ප්‍රවාහන හෝ සේවා වියදම් ලොග් කර අනුමැතිය සඳහා යොමු කරන්න.</DialogDescription>
+                    <DialogTitle className="text-base font-extrabold text-slate-900 dark:text-white">නව වියදමක් ලියාපදිංචි කිරීම</DialogTitle>
+                    <DialogDescription className="text-xs text-slate-500 dark:text-slate-400">මෙහෙයුම්, ප්‍රවාහන හෝ සේවා වියදම් ලොග් කර අනුමැතිය සඳහා යොමු කරන්න.</DialogDescription>
                   </DialogHeader>
                   <form onSubmit={handleAddExpense} className="space-y-4 pt-2">
                     <div className="space-y-1">
-                      <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">වියදම් විස්තරය (Description)</label>
-                      <Input required value={newExpTitle} onChange={e => setNewExpTitle(e.target.value)} placeholder="උදා: ලොරියට ඩීසල් ගැසීම WP-TRK-102" className="rounded-xl text-xs" />
+                      <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">වියදම් විස්තරය (Description)</label>
+                      <Input required value={newExpTitle} onChange={e => setNewExpTitle(e.target.value)} placeholder="උදා: ලොරියට ඩීසල් ගැසීම WP-TRK-102" className="rounded-xl text-xs bg-white dark:bg-slate-850 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white" />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-1">
-                        <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">වියදම් කාණ්ඩය (Category)</label>
-                        <select value={newExpCategory} onChange={e => setNewExpCategory(e.target.value)} className="w-full p-2 border border-slate-200 rounded-xl text-xs bg-slate-50">
+                        <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">වියදම් කාණ්ඩය (Category)</label>
+                        <select value={newExpCategory} onChange={e => setNewExpCategory(e.target.value)} className="w-full p-2 border border-slate-200 dark:border-slate-800 rounded-xl text-xs bg-slate-50 dark:bg-slate-800 text-slate-700 dark:text-slate-200">
                           <option value="Logistics">Logistics (ප්‍රවාහන වියදම්)</option>
                           <option value="Utilities">Utilities (උපයෝගිතා පිරිවැය)</option>
                           <option value="Welfare">Welfare (කාර්ය මණ්ඩල සුබසාධන)</option>
@@ -583,8 +582,8 @@ export default function OperationsPage() {
                         </select>
                       </div>
                       <div className="space-y-1">
-                        <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400 font-bold text-rose-600">වියදම් වටිනාකම Rs.</label>
-                        <Input type="number" required value={newExpAmount} onChange={e => setNewExpAmount(e.target.value)} placeholder="0.00" className="rounded-xl text-xs border-rose-250" />
+                        <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 font-bold text-rose-600 dark:text-rose-455">වියදම් වටිනාකම Rs.</label>
+                        <Input type="number" required value={newExpAmount} onChange={e => setNewExpAmount(e.target.value)} placeholder="0.00" className="rounded-xl text-xs bg-white dark:bg-slate-850 border border-rose-200 dark:border-rose-950 text-slate-900 dark:text-white" />
                       </div>
                     </div>
                     <DialogFooter className="pt-2">
@@ -603,24 +602,24 @@ export default function OperationsPage() {
                     <Plus className="w-4 h-4" /> නව කළමනාකරුවෙකු එක් කරන්න
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="max-w-md bg-white text-slate-900 rounded-2xl">
+                <DialogContent className="max-w-md bg-white dark:bg-slate-900 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-800 rounded-2xl">
                   <DialogHeader>
-                    <DialogTitle className="text-base font-extrabold">නව සමාගම් කළමනාකරුවෙකු එක් කිරීම</DialogTitle>
-                    <DialogDescription className="text-xs">ශාඛා හෝ කර්මාන්තශාලා අංශයන් භාරව කටයුතු කරන නව කළමනාකරුවෙකු ලියාපදිංචි කරන්න.</DialogDescription>
+                    <DialogTitle className="text-base font-extrabold text-slate-900 dark:text-white">නව සමාගම් කළමනාකරුවෙකු එක් කිරීම</DialogTitle>
+                    <DialogDescription className="text-xs text-slate-500 dark:text-slate-400">ශාඛා හෝ කර්මාන්තශාලා අංශයන් භාරව කටයුතු කරන නව කළමනාකරුවෙකු ලියාපදිංචි කරන්න.</DialogDescription>
                   </DialogHeader>
                   <form onSubmit={handleAddManager} className="space-y-4 pt-2">
                     <div className="space-y-1">
-                      <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">කළමනාකරුගේ නම (Full Name)</label>
-                      <Input required value={newManName} onChange={e => setNewManName(e.target.value)} placeholder="උදා: Nilantha Perera" className="rounded-xl text-xs" />
+                      <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">කළමනාකරුගේ නම (Full Name)</label>
+                      <Input required value={newManName} onChange={e => setNewManName(e.target.value)} placeholder="උදා: Nilantha Perera" className="rounded-xl text-xs bg-white dark:bg-slate-850 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white" />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-1">
-                        <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">තනතුර (Role)</label>
-                        <Input required value={newManRole} onChange={e => setNewManRole(e.target.value)} placeholder="උදා: Logistics Manager" className="rounded-xl text-xs" />
+                        <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">තනතුර (Role)</label>
+                        <Input required value={newManRole} onChange={e => setNewManRole(e.target.value)} placeholder="උදා: Logistics Manager" className="rounded-xl text-xs bg-white dark:bg-slate-850 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white" />
                       </div>
                       <div className="space-y-1">
-                        <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400">දුරකථන අංකය</label>
-                        <Input required value={newManPhone} onChange={e => setNewManPhone(e.target.value)} placeholder="07X-XXXXXXX" className="rounded-xl text-xs" />
+                        <label className="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">දුරකථන අංකය</label>
+                        <Input required value={newManPhone} onChange={e => setNewManPhone(e.target.value)} placeholder="07X-XXXXXXX" className="rounded-xl text-xs bg-white dark:bg-slate-850 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white" />
                       </div>
                     </div>
                     <DialogFooter className="pt-2">
@@ -634,7 +633,7 @@ export default function OperationsPage() {
 
             {/* If Credit or Debt view, show status information */}
             {(currentView === "credit" || currentView === "debt") && (
-              <span className="text-[11px] font-extrabold text-slate-500 flex items-center gap-1.5 bg-slate-50 px-3 py-1.5 rounded-xl border border-slate-100">
+              <span className="text-[11px] font-extrabold text-slate-550 dark:text-slate-400 flex items-center gap-1.5 bg-slate-50 dark:bg-slate-800 px-3 py-1.5 rounded-xl border border-slate-100 dark:border-slate-800">
                 <Info className="w-4 h-4 text-indigo-500" />
                 ප්‍රමාද වූ ගෙවීම් පාලනය සඳහා මෙම ලේඛනය යොදා ගැනේ.
               </span>
@@ -647,8 +646,8 @@ export default function OperationsPage() {
           {/* 1. CLIENT DIRECTORY */}
           {currentView === "client" && (
             <div className="space-y-6 animate-fade-in">
-              <Card className="rounded-2xl border-slate-200/80 bg-white dark:bg-slate-900 shadow-sm overflow-hidden">
-                <CardHeader className="border-b border-slate-100 p-6 bg-slate-50/20">
+              <Card className="rounded-2xl border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm overflow-hidden">
+                <CardHeader className="border-b border-slate-100 dark:border-slate-800 p-6 bg-slate-50/20 dark:bg-slate-800/10">
                   <CardTitle className="text-sm font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
                     <User className="w-4.5 h-4.5 text-indigo-500" />
                     ගනුදෙනුකරුවන්ගේ නාමාවලිය (Client Database Ledger)
@@ -661,7 +660,7 @@ export default function OperationsPage() {
                   <div className="overflow-x-auto">
                     <table className="w-full text-left border-collapse">
                       <thead>
-                        <tr className="border-b border-slate-100 bg-slate-50/50 text-[10px] uppercase font-bold tracking-wider text-slate-400">
+                        <tr className="border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/20 text-[10px] uppercase font-bold tracking-wider text-slate-400 dark:text-slate-500">
                           <th className="py-3.5 px-6">ID</th>
                           <th className="py-3.5 px-6">ආයතන නම (Client Name)</th>
                           <th className="py-3.5 px-6">බෙදාහැරීමේ කලාපය (Route)</th>
@@ -670,20 +669,20 @@ export default function OperationsPage() {
                           <th className="py-3.5 px-6 text-right">තත්ත්වය (Status)</th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-slate-100 text-xs">
+                      <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-xs">
                         {clients
                           .filter(c => c.name.toLowerCase().includes(searchTerm.toLowerCase()) || c.route.toLowerCase().includes(searchTerm.toLowerCase()))
                           .map(c => (
-                            <tr key={c.id} className="hover:bg-slate-50/50 transition-colors">
-                              <td className="py-4 px-6 font-bold text-indigo-650">{c.id}</td>
-                              <td className="py-4 px-6 font-extrabold text-slate-800">{c.name}</td>
-                              <td className="py-4 px-6 text-slate-500 font-semibold">{c.route}</td>
-                              <td className="py-4 px-6 text-slate-550 font-semibold">{c.phone}</td>
-                              <td className={`py-4 px-6 font-black ${c.outstanding > 0 ? "text-indigo-600" : "text-slate-400"}`}>
+                            <tr key={c.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/10 transition-colors">
+                              <td className="py-4 px-6 font-bold text-indigo-650 dark:text-indigo-400">{c.id}</td>
+                              <td className="py-4 px-6 font-extrabold text-slate-800 dark:text-slate-200">{c.name}</td>
+                              <td className="py-4 px-6 text-slate-500 dark:text-slate-400 font-semibold">{c.route}</td>
+                              <td className="py-4 px-6 text-slate-550 dark:text-slate-400 font-semibold">{c.phone}</td>
+                              <td className={`py-4 px-6 font-black ${c.outstanding > 0 ? "text-indigo-600 dark:text-indigo-400" : "text-slate-400 dark:text-slate-500"}`}>
                                 Rs. {c.outstanding.toLocaleString()}.00
                               </td>
                               <td className="py-4 px-6 text-right">
-                                <span className="inline-flex items-center gap-1 text-[10px] bg-emerald-50 text-emerald-700 border border-emerald-100 rounded-xl px-2 py-0.5 font-bold">
+                                <span className="inline-flex items-center gap-1 text-[10px] bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-450 border border-emerald-100 dark:border-emerald-900/30 rounded-xl px-2 py-0.5 font-bold">
                                   {c.status}
                                 </span>
                               </td>
@@ -700,44 +699,42 @@ export default function OperationsPage() {
           {/* 2. SALES LEDGER */}
           {currentView === "sales" && (
             <div className="space-y-6 animate-fade-in">
-              <Card className="rounded-2xl border-slate-200/80 bg-white dark:bg-slate-900 shadow-sm overflow-hidden">
-                <CardHeader className="border-b border-slate-100 p-6 bg-slate-50/20">
+              <Card className="rounded-2xl border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm overflow-hidden">
+                <CardHeader className="border-b border-slate-100 dark:border-slate-800 p-6 bg-slate-50/20 dark:bg-slate-800/10">
                   <CardTitle className="text-sm font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
                     <CircleDollarSign className="w-4.5 h-4.5 text-indigo-500" />
-                    විකුණුම් ඇනවුම් ලෙජරය (Active Sales Orders)
+                    සජීවී අලෙවි ලෙජරය (Sales Registry Center)
                   </CardTitle>
                   <CardDescription className="text-xs">
-                    සෝයාමීට්, පොල්තෙල් සහ සහල් තොග බෙදාහැරීම් සඳහා ඇනවුම් ප්‍රගතිය සහ මුළු බිල්පත් වටිනාකම.
+                    කර්මාන්තශාලාවෙන් නිකුත් කෙරුණු සියලුම ඇණවුම්වල තත්‍ය කාලීන මෙහෙයුම් ලොගය.
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="p-0">
                   <div className="overflow-x-auto">
                     <table className="w-full text-left border-collapse">
                       <thead>
-                        <tr className="border-b border-slate-100 bg-slate-50/50 text-[10px] uppercase font-bold tracking-wider text-slate-400">
+                        <tr className="border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/20 text-[10px] uppercase font-bold tracking-wider text-slate-400 dark:text-slate-500">
                           <th className="py-3.5 px-6">Order ID</th>
                           <th className="py-3.5 px-6">ගනුදෙනුකරු (Client)</th>
-                          <th className="py-3.5 px-6">ඇණවුම් විස්තරය (Items Manifest)</th>
-                          <th className="py-3.5 px-6">දිනය (Date)</th>
-                          <th className="py-3.5 px-6">ඇණවුම් වටිනාකම Rs.</th>
-                          <th className="py-3.5 px-6 text-right">බෙදාහැරීම් ප්‍රගතිය</th>
+                          <th className="py-3.5 px-6">අඩංගු ද්‍රව්‍ය (Items Included)</th>
+                          <th className="py-3.5 px-6">ලොග් කළ දිනය (Date)</th>
+                          <th className="py-3.5 px-6">මුළු වටිනාකම (Amount)</th>
+                          <th className="py-3.5 px-6 text-right">තත්ත්වය (Status)</th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-slate-100 text-xs">
+                      <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-xs">
                         {sales
                           .filter(s => s.client.toLowerCase().includes(searchTerm.toLowerCase()) || s.items.toLowerCase().includes(searchTerm.toLowerCase()))
                           .map(s => (
-                            <tr key={s.id} className="hover:bg-slate-50/50 transition-colors">
-                              <td className="py-4 px-6 font-bold text-indigo-650">{s.id}</td>
-                              <td className="py-4 px-6 font-extrabold text-slate-800">{s.client}</td>
-                              <td className="py-4 px-6 text-slate-550 font-semibold">{s.items}</td>
-                              <td className="py-4 px-6 text-slate-400 font-semibold">{s.date}</td>
-                              <td className="py-4 px-6 font-black text-indigo-600">Rs. {s.amount.toLocaleString()}.00</td>
+                            <tr key={s.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/10 transition-colors">
+                              <td className="py-4 px-6 font-bold text-indigo-650 dark:text-indigo-400">{s.id}</td>
+                              <td className="py-4 px-6 font-extrabold text-slate-800 dark:text-slate-200">{s.client}</td>
+                              <td className="py-4 px-6 text-slate-550 dark:text-slate-400 font-semibold">{s.items}</td>
+                              <td className="py-4 px-6 text-slate-400 dark:text-slate-500 font-semibold">{s.date}</td>
+                              <td className="py-4 px-6 font-black text-indigo-650 dark:text-indigo-400">Rs. {s.amount.toLocaleString()}.00</td>
                               <td className="py-4 px-6 text-right">
                                 <span className={`inline-flex items-center gap-1 text-[10px] border rounded-xl px-2 py-0.5 font-bold ${
-                                  s.status === "Delivered" ? "bg-emerald-50 text-emerald-700 border-emerald-100" :
-                                  s.status === "In Transit" ? "bg-amber-50 text-amber-700 border-amber-100" :
-                                  "bg-indigo-50 text-indigo-700 border-indigo-100 animate-pulse"
+                                  s.status === "Delivered" ? "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-450 border-emerald-100 dark:border-emerald-900/30" : s.status === "Pending" ? "bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-455 border-rose-100 dark:border-rose-900/30 animate-pulse" : "bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-450 border-amber-100 dark:border-amber-900/30"
                                 }`}>
                                   {s.status}
                                 </span>
@@ -752,45 +749,45 @@ export default function OperationsPage() {
             </div>
           )}
 
-          {/* 3. RECOVERY TRACKER */}
+          {/* 3. RECOVERIES LEDGER */}
           {currentView === "recovery" && (
             <div className="space-y-6 animate-fade-in">
-              <Card className="rounded-2xl border-slate-200/80 bg-white dark:bg-slate-900 shadow-sm overflow-hidden">
-                <CardHeader className="border-b border-slate-100 p-6 bg-slate-50/20">
+              <Card className="rounded-2xl border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm overflow-hidden">
+                <CardHeader className="border-b border-slate-100 dark:border-slate-800 p-6 bg-slate-50/20 dark:bg-slate-800/10">
                   <CardTitle className="text-sm font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
                     <TrendingUp className="w-4.5 h-4.5 text-indigo-500" />
-                    ණය අයකරගැනීම් සහ චෙක්පත් ලේඛනය (Outstanding Recoveries Tracker)
+                    පාරිභෝගික ණය අයකරගැනීම් (Cash & Cheque Collection Registry)
                   </CardTitle>
                   <CardDescription className="text-xs">
-                    පාරිභෝගිකයින්ගෙන් පියවන ලද ණය මුදල්, ලැබුණු මුදල් (Cash) සහ බැංකුවලට තැන්පත් කළ චෙක්පත් (Cheques) තොරතුරු.
+                    ලැබීමට ඇති ණය පියවීම සඳහා ලැබුණු මුදල් හා චෙක්පත් තහවුරු කිරීමේ ලොගය.
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="p-0">
                   <div className="overflow-x-auto">
                     <table className="w-full text-left border-collapse">
                       <thead>
-                        <tr className="border-b border-slate-100 bg-slate-50/50 text-[10px] uppercase font-bold tracking-wider text-slate-400">
-                          <th className="py-3.5 px-6">Receipt No</th>
+                        <tr className="border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/20 text-[10px] uppercase font-bold tracking-wider text-slate-400 dark:text-slate-500">
+                          <th className="py-3.5 px-6">Receipt ID</th>
                           <th className="py-3.5 px-6">ගනුදෙනුකරු (Client)</th>
                           <th className="py-3.5 px-6">ගෙවීම් ක්‍රමය (Method)</th>
-                          <th className="py-3.5 px-6">ලැබුණු දිනය (Date)</th>
-                          <th className="py-3.5 px-6">අයකරගත් වටිනාකම Rs.</th>
-                          <th className="py-3.5 px-6 text-right">තත්ත්වය (Status)</th>
+                          <th className="py-3.5 px-6">දිනය (Date)</th>
+                          <th className="py-3.5 px-6">අයකරගත් මුදල (Amount Collected)</th>
+                          <th className="py-3.5 px-6 text-right">චෙක්පත් පියවීම (Clearance Status)</th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-slate-100 text-xs">
+                      <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-xs">
                         {recoveries
                           .filter(r => r.client.toLowerCase().includes(searchTerm.toLowerCase()) || r.method.toLowerCase().includes(searchTerm.toLowerCase()))
                           .map(r => (
-                            <tr key={r.id} className="hover:bg-slate-50/50 transition-colors">
-                              <td className="py-4 px-6 font-bold text-indigo-650">{r.id}</td>
-                              <td className="py-4 px-6 font-extrabold text-slate-800">{r.client}</td>
-                              <td className="py-4 px-6 text-slate-550 font-semibold">{r.method}</td>
-                              <td className="py-4 px-6 text-slate-400 font-semibold">{r.date}</td>
-                              <td className="py-4 px-6 font-black text-emerald-650">Rs. {r.amount.toLocaleString()}.00</td>
+                            <tr key={r.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/10 transition-colors">
+                              <td className="py-4 px-6 font-bold text-indigo-650 dark:text-indigo-400">{r.id}</td>
+                              <td className="py-4 px-6 font-extrabold text-slate-800 dark:text-slate-200">{r.client}</td>
+                              <td className="py-4 px-6 text-slate-550 dark:text-slate-400 font-semibold">{r.method}</td>
+                              <td className="py-4 px-6 text-slate-400 dark:text-slate-500 font-semibold">{r.date}</td>
+                              <td className="py-4 px-6 font-black text-emerald-600 dark:text-emerald-400">Rs. {r.amount.toLocaleString()}.00</td>
                               <td className="py-4 px-6 text-right">
                                 <span className={`inline-flex items-center gap-1 text-[10px] border rounded-xl px-2 py-0.5 font-bold ${
-                                  r.status === "Cleared" ? "bg-emerald-50 text-emerald-700 border-emerald-100" : "bg-amber-50 text-amber-700 border-amber-100 animate-pulse"
+                                  r.status === "Cleared" ? "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-450 border-emerald-100 dark:border-emerald-900/30" : "bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-450 border-amber-100 dark:border-amber-900/30 animate-pulse"
                                 }`}>
                                   {r.status}
                                 </span>
@@ -808,8 +805,8 @@ export default function OperationsPage() {
           {/* 4. STOCK ADJUSTMENTS & FORMULA */}
           {currentView === "stock" && (
             <div className="space-y-6 animate-fade-in">
-              <Card className="rounded-2xl border-slate-200/80 bg-white dark:bg-slate-900 shadow-sm overflow-hidden">
-                <CardHeader className="border-b border-slate-100 p-6 bg-slate-50/20">
+              <Card className="rounded-2xl border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm overflow-hidden">
+                <CardHeader className="border-b border-slate-100 dark:border-slate-800 p-6 bg-slate-50/20 dark:bg-slate-800/10">
                   <CardTitle className="text-sm font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
                     <Boxes className="w-4.5 h-4.5 text-indigo-500" />
                     කර්මාන්තශාලා තොග කළමනාකරණය (Basic Chemicals & SKU Balances)
@@ -822,7 +819,7 @@ export default function OperationsPage() {
                   <div className="overflow-x-auto">
                     <table className="w-full text-left border-collapse">
                       <thead>
-                        <tr className="border-b border-slate-100 bg-slate-50/50 text-[10px] uppercase font-bold tracking-wider text-slate-400">
+                        <tr className="border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/20 text-[10px] uppercase font-bold tracking-wider text-slate-400 dark:text-slate-500">
                           <th className="py-3.5 px-6">SKU ID</th>
                           <th className="py-3.5 px-6">අයිතම විස්තරය (Item Details)</th>
                           <th className="py-3.5 px-6">අංශය (Type)</th>
@@ -831,19 +828,19 @@ export default function OperationsPage() {
                           <th className="py-3.5 px-6 text-right">තත්ත්වය (Status)</th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-slate-100 text-xs">
+                      <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-xs">
                         {stocks
                           .filter(s => s.name.toLowerCase().includes(searchTerm.toLowerCase()))
                           .map(s => (
-                            <tr key={s.id} className="hover:bg-slate-50/50 transition-colors">
-                              <td className="py-4 px-6 font-bold text-indigo-650">{s.id}</td>
-                              <td className="py-4 px-6 font-extrabold text-slate-800">{s.name}</td>
-                              <td className="py-4 px-6 text-slate-500 font-semibold">{s.type}</td>
-                              <td className="py-4 px-6 text-slate-400 font-semibold">{s.minLevel}</td>
-                              <td className="py-4 px-6 font-black text-slate-800">{s.qty}</td>
+                            <tr key={s.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/10 transition-colors">
+                              <td className="py-4 px-6 font-bold text-indigo-650 dark:text-indigo-400">{s.id}</td>
+                              <td className="py-4 px-6 font-extrabold text-slate-800 dark:text-slate-200">{s.name}</td>
+                              <td className="py-4 px-6 text-slate-500 dark:text-slate-400 font-semibold">{s.type}</td>
+                              <td className="py-4 px-6 text-slate-400 dark:text-slate-500 font-semibold">{s.minLevel}</td>
+                              <td className="py-4 px-6 font-black text-slate-800 dark:text-slate-200">{s.qty}</td>
                               <td className="py-4 px-6 text-right">
                                 <span className={`inline-flex items-center gap-1 text-[10px] border rounded-xl px-2 py-0.5 font-bold ${
-                                  s.status === "High Stock" || s.status === "Stable" ? "bg-emerald-50 text-emerald-700 border-emerald-100" : "bg-rose-50 text-rose-700 border-rose-100 animate-pulse"
+                                  s.status === "High Stock" || s.status === "Stable" ? "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-450 border-emerald-100 dark:border-emerald-900/30" : "bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-455 border-rose-100 dark:border-rose-900/30 animate-pulse"
                                 }`}>
                                   {s.status}
                                 </span>
@@ -861,8 +858,8 @@ export default function OperationsPage() {
           {/* 5. CREDIT MANAGEMENT */}
           {currentView === "credit" && (
             <div className="space-y-6 animate-fade-in">
-              <Card className="rounded-2xl border-slate-200/80 bg-white dark:bg-slate-900 shadow-sm overflow-hidden">
-                <CardHeader className="border-b border-slate-100 p-6 bg-slate-50/20">
+              <Card className="rounded-2xl border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm overflow-hidden">
+                <CardHeader className="border-b border-slate-100 dark:border-slate-800 p-6 bg-slate-50/20 dark:bg-slate-800/10">
                   <CardTitle className="text-sm font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
                     <Info className="w-4.5 h-4.5 text-indigo-500" />
                     සැපයුම්කරුවන්ගේ ණයහිමි ලෙජරය (Creditors & Payables Management)
@@ -875,7 +872,7 @@ export default function OperationsPage() {
                   <div className="overflow-x-auto">
                     <table className="w-full text-left border-collapse">
                       <thead>
-                        <tr className="border-b border-slate-100 bg-slate-50/50 text-[10px] uppercase font-bold tracking-wider text-slate-400">
+                        <tr className="border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/20 text-[10px] uppercase font-bold tracking-wider text-slate-400 dark:text-slate-500">
                           <th className="py-3.5 px-6">Creditor ID</th>
                           <th className="py-3.5 px-6">සැපයුම්කරු (Supplier Name)</th>
                           <th className="py-3.5 px-6">දුරකථන (Contact)</th>
@@ -884,19 +881,19 @@ export default function OperationsPage() {
                           <th className="py-3.5 px-6 text-right">අවදානම් මට්ටම (Status)</th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-slate-100 text-xs">
+                      <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-xs">
                         {creditors
                           .filter(c => c.name.toLowerCase().includes(searchTerm.toLowerCase()))
                           .map(c => (
-                            <tr key={c.id} className="hover:bg-slate-50/50 transition-colors">
-                              <td className="py-4 px-6 font-bold text-indigo-650">{c.id}</td>
-                              <td className="py-4 px-6 font-extrabold text-slate-800">{c.name}</td>
-                              <td className="py-4 px-6 text-slate-500 font-semibold">{c.contact}</td>
-                              <td className="py-4 px-6 text-slate-400 font-semibold">{c.term}</td>
-                              <td className="py-4 px-6 font-black text-rose-600">Rs. {c.outstanding.toLocaleString()}.00</td>
+                            <tr key={c.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/10 transition-colors">
+                              <td className="py-4 px-6 font-bold text-indigo-650 dark:text-indigo-400">{c.id}</td>
+                              <td className="py-4 px-6 font-extrabold text-slate-800 dark:text-slate-200">{c.name}</td>
+                              <td className="py-4 px-6 text-slate-500 dark:text-slate-400 font-semibold">{c.contact}</td>
+                              <td className="py-4 px-6 text-slate-400 dark:text-slate-500 font-semibold">{c.term}</td>
+                              <td className="py-4 px-6 font-black text-rose-600 dark:text-rose-455">Rs. {c.outstanding.toLocaleString()}.00</td>
                               <td className="py-4 px-6 text-right">
                                 <span className={`inline-flex items-center gap-1 text-[10px] border rounded-xl px-2 py-0.5 font-bold ${
-                                  c.status === "Paid" || c.status === "Stable" ? "bg-emerald-50 text-emerald-700 border-emerald-100" : "bg-rose-50 text-rose-700 border-rose-100 animate-pulse"
+                                  c.status === "Paid" || c.status === "Stable" ? "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-450 border-emerald-100 dark:border-emerald-900/30" : "bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-455 border-rose-100 dark:border-rose-900/30 animate-pulse"
                                 }`}>
                                   {c.status}
                                 </span>
@@ -914,8 +911,8 @@ export default function OperationsPage() {
           {/* 6. DEBT MANAGEMENT */}
           {currentView === "debt" && (
             <div className="space-y-6 animate-fade-in">
-              <Card className="rounded-2xl border-slate-200/80 bg-white dark:bg-slate-900 shadow-sm overflow-hidden">
-                <CardHeader className="border-b border-slate-100 p-6 bg-slate-50/20">
+              <Card className="rounded-2xl border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm overflow-hidden">
+                <CardHeader className="border-b border-slate-100 dark:border-slate-800 p-6 bg-slate-50/20 dark:bg-slate-800/10">
                   <CardTitle className="text-sm font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
                     <Info className="w-4.5 h-4.5 text-indigo-500" />
                     පාරිභෝගික ණයගැති පාලනය (Debtors aging & Reminders Center)
@@ -928,7 +925,7 @@ export default function OperationsPage() {
                   <div className="overflow-x-auto">
                     <table className="w-full text-left border-collapse">
                       <thead>
-                        <tr className="border-b border-slate-100 bg-slate-50/50 text-[10px] uppercase font-bold tracking-wider text-slate-400">
+                        <tr className="border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/20 text-[10px] uppercase font-bold tracking-wider text-slate-400 dark:text-slate-500">
                           <th className="py-3.5 px-6">Debtor ID</th>
                           <th className="py-3.5 px-6">අලෙවිසැල (Shop Outlet)</th>
                           <th className="py-3.5 px-6">අවසන් වරට ගෙවූ දිනය</th>
@@ -937,18 +934,18 @@ export default function OperationsPage() {
                           <th className="py-3.5 px-6 text-right">ක්‍රියාමාර්ග (Quick Action)</th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-slate-100 text-xs">
+                      <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-xs">
                         {debtors
                           .filter(d => d.name.toLowerCase().includes(searchTerm.toLowerCase()))
                           .map(d => (
-                            <tr key={d.id} className="hover:bg-slate-50/50 transition-colors">
-                              <td className="py-4 px-6 font-bold text-indigo-650">{d.id}</td>
-                              <td className="py-4 px-6 font-extrabold text-slate-800">{d.name}</td>
-                              <td className="py-4 px-6 text-slate-500 font-semibold">{d.lastPayDate}</td>
-                              <td className="py-4 px-6 font-black text-indigo-600">Rs. {d.outstanding.toLocaleString()}.00</td>
+                            <tr key={d.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/10 transition-colors">
+                              <td className="py-4 px-6 font-bold text-indigo-650 dark:text-indigo-400">{d.id}</td>
+                              <td className="py-4 px-6 font-extrabold text-slate-800 dark:text-slate-200">{d.name}</td>
+                              <td className="py-4 px-6 text-slate-500 dark:text-slate-400 font-semibold">{d.lastPayDate}</td>
+                              <td className="py-4 px-6 font-black text-indigo-600 dark:text-indigo-400">Rs. {d.outstanding.toLocaleString()}.00</td>
                               <td className="py-4 px-6 font-bold">
                                 <span className={`inline-flex items-center gap-1 text-[10px] border rounded-xl px-2 py-0.5 font-bold ${
-                                  d.status.includes("Overdue") ? "bg-rose-50 text-rose-700 border-rose-100" : "bg-slate-50 text-slate-600 border-slate-200"
+                                  d.status.includes("Overdue") ? "bg-rose-50 dark:bg-rose-950/40 text-rose-700 dark:text-rose-455 border-rose-100 dark:border-rose-900/30" : "bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-slate-350 border border-slate-200 dark:border-slate-850"
                                 }`}>
                                   {d.status}
                                 </span>
@@ -975,8 +972,8 @@ export default function OperationsPage() {
           {/* 7. SUPPLIER DIRECTORY */}
           {currentView === "supplier" && (
             <div className="space-y-6 animate-fade-in">
-              <Card className="rounded-2xl border-slate-200/80 bg-white dark:bg-slate-900 shadow-sm overflow-hidden">
-                <CardHeader className="border-b border-slate-100 p-6 bg-slate-50/20">
+              <Card className="rounded-2xl border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm overflow-hidden">
+                <CardHeader className="border-b border-slate-100 dark:border-slate-800 p-6 bg-slate-50/20 dark:bg-slate-800/10">
                   <CardTitle className="text-sm font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
                     <Package className="w-4.5 h-4.5 text-indigo-500" />
                     සැපයුම්කරුවන්ගේ නාමාවලිය (Raw Materials Suppliers Database)
@@ -989,7 +986,7 @@ export default function OperationsPage() {
                   <div className="overflow-x-auto">
                     <table className="w-full text-left border-collapse">
                       <thead>
-                        <tr className="border-b border-slate-100 bg-slate-50/50 text-[10px] uppercase font-bold tracking-wider text-slate-400">
+                        <tr className="border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/20 text-[10px] uppercase font-bold tracking-wider text-slate-400 dark:text-slate-500">
                           <th className="py-3.5 px-6">ID</th>
                           <th className="py-3.5 px-6">ආයතන නම (Supplier)</th>
                           <th className="py-3.5 px-6">ස්ථානය (Location)</th>
@@ -997,17 +994,17 @@ export default function OperationsPage() {
                           <th className="py-3.5 px-6 text-right">ගිවිසුම (Status)</th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-slate-100 text-xs">
+                      <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-xs">
                         {suppliers
                           .filter(s => s.name.toLowerCase().includes(searchTerm.toLowerCase()) || s.items.toLowerCase().includes(searchTerm.toLowerCase()))
                           .map(s => (
-                            <tr key={s.id} className="hover:bg-slate-50/50 transition-colors">
-                              <td className="py-4 px-6 font-bold text-indigo-650">{s.id}</td>
-                              <td className="py-4 px-6 font-extrabold text-slate-800">{s.name}</td>
-                              <td className="py-4 px-6 text-slate-500 font-semibold">{s.location}</td>
-                              <td className="py-4 px-6 text-slate-550 font-semibold">{s.items}</td>
+                            <tr key={s.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/10 transition-colors">
+                              <td className="py-4 px-6 font-bold text-indigo-650 dark:text-indigo-400">{s.id}</td>
+                              <td className="py-4 px-6 font-extrabold text-slate-800 dark:text-slate-200">{s.name}</td>
+                              <td className="py-4 px-6 text-slate-500 dark:text-slate-400 font-semibold">{s.location}</td>
+                              <td className="py-4 px-6 text-slate-550 dark:text-slate-400 font-semibold">{s.items}</td>
                               <td className="py-4 px-6 text-right">
-                                <span className="inline-flex items-center gap-1 text-[10px] bg-emerald-50 text-emerald-700 border border-emerald-100 rounded-xl px-2 py-0.5 font-bold">
+                                <span className="inline-flex items-center gap-1 text-[10px] bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-450 border border-emerald-100 dark:border-emerald-900/30 rounded-xl px-2 py-0.5 font-bold">
                                   {s.status}
                                 </span>
                               </td>
@@ -1024,8 +1021,8 @@ export default function OperationsPage() {
           {/* 8. EXPENSES LOG */}
           {currentView === "expenses" && (
             <div className="space-y-6 animate-fade-in">
-              <Card className="rounded-2xl border-slate-200/80 bg-white dark:bg-slate-900 shadow-sm overflow-hidden border-rose-100">
-                <CardHeader className="border-b border-slate-100 p-6 bg-rose-50/[0.05]">
+              <Card className="rounded-2xl border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm overflow-hidden border-rose-100 dark:border-rose-950/50">
+                <CardHeader className="border-b border-slate-100 dark:border-slate-800 p-6 bg-rose-50/[0.05] dark:bg-rose-950/10">
                   <CardTitle className="text-sm font-extrabold text-rose-700 flex items-center gap-2">
                     <CircleDollarSign className="w-4.5 h-4.5 text-rose-500" />
                     වියදම් ලෙජරය සහ වවුචර් ලොගය (Expenses Voucher Log)
@@ -1038,7 +1035,7 @@ export default function OperationsPage() {
                   <div className="overflow-x-auto">
                     <table className="w-full text-left border-collapse">
                       <thead>
-                        <tr className="border-b border-slate-100 bg-slate-50/50 text-[10px] uppercase font-bold tracking-wider text-slate-400">
+                        <tr className="border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/20 text-[10px] uppercase font-bold tracking-wider text-slate-400 dark:text-slate-500">
                           <th className="py-3.5 px-6">Voucher ID</th>
                           <th className="py-3.5 px-6">වියදම් විස්තරය (Expense Description)</th>
                           <th className="py-3.5 px-6">වියදම් කාණ්ඩය (Category)</th>
@@ -1047,19 +1044,19 @@ export default function OperationsPage() {
                           <th className="py-3.5 px-6 text-right">අනුමැතිය (Approval Status)</th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-slate-100 text-xs">
+                      <tbody className="divide-y divide-slate-100 dark:divide-slate-800 text-xs">
                         {expenses
                           .filter(e => e.title.toLowerCase().includes(searchTerm.toLowerCase()) || e.category.toLowerCase().includes(searchTerm.toLowerCase()))
                           .map(e => (
-                            <tr key={e.id} className="hover:bg-slate-50/50 transition-colors">
-                              <td className="py-4 px-6 font-bold text-indigo-650">{e.id}</td>
-                              <td className="py-4 px-6 font-extrabold text-slate-800">{e.title}</td>
-                              <td className="py-4 px-6 text-slate-500 font-semibold">{e.category}</td>
-                              <td className="py-4 px-6 text-slate-400 font-semibold">{e.date}</td>
-                              <td className="py-4 px-6 font-black text-rose-600">Rs. {e.amount.toLocaleString()}.00</td>
+                            <tr key={e.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/10 transition-colors">
+                              <td className="py-4 px-6 font-bold text-indigo-650 dark:text-indigo-400">{e.id}</td>
+                              <td className="py-4 px-6 font-extrabold text-slate-800 dark:text-slate-200">{e.title}</td>
+                              <td className="py-4 px-6 text-slate-500 dark:text-slate-400 font-semibold">{e.category}</td>
+                              <td className="py-4 px-6 text-slate-400 dark:text-slate-500 font-semibold">{e.date}</td>
+                              <td className="py-4 px-6 font-black text-rose-600 dark:text-rose-455">Rs. {e.amount.toLocaleString()}.00</td>
                               <td className="py-4 px-6 text-right">
                                 <span className={`inline-flex items-center gap-1 text-[10px] border rounded-xl px-2 py-0.5 font-bold ${
-                                  e.status === "Approved" ? "bg-emerald-50 text-emerald-700 border-emerald-100" : "bg-amber-50 text-amber-700 border-amber-100 animate-pulse"
+                                  e.status === "Approved" ? "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-450 border-emerald-100 dark:border-emerald-900/30" : "bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-450 border-amber-100 dark:border-amber-900/30 animate-pulse"
                                 }`}>
                                   {e.status}
                                 </span>
@@ -1077,8 +1074,8 @@ export default function OperationsPage() {
           {/* 9. COMPANY MANAGERS DIRECTORY */}
           {currentView === "managers" && (
             <div className="space-y-6 animate-fade-in">
-              <Card className="rounded-2xl border-slate-200/80 bg-white dark:bg-slate-900 shadow-sm p-6">
-                <CardHeader className="p-0 pb-6 border-b border-slate-150 mb-6">
+              <Card className="rounded-2xl border-slate-200/80 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm p-6">
+                <CardHeader className="p-0 pb-6 border-b border-slate-150 dark:border-slate-800 mb-6">
                   <CardTitle className="text-sm font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
                     <User className="w-5 h-5 text-indigo-500" />
                     සමාගම් කළමනාකාර නාමාවලිය (Managers & Representatives)
@@ -1092,7 +1089,7 @@ export default function OperationsPage() {
                     {managers
                       .filter(m => m.name.toLowerCase().includes(searchTerm.toLowerCase()) || m.role.toLowerCase().includes(searchTerm.toLowerCase()))
                       .map(m => (
-                        <div key={m.id} className="p-5 bg-slate-50/50 dark:bg-slate-900/50 rounded-2xl border border-slate-200/60 dark:border-slate-800/80 flex items-start gap-4 hover:shadow-md hover:border-indigo-150 transition-all duration-300">
+                        <div key={m.id} className="p-5 bg-slate-50/50 dark:bg-slate-900/50 rounded-2xl border border-slate-200/60 dark:border-slate-800 flex items-start gap-4 hover:shadow-md hover:border-indigo-500/50 transition-all duration-300">
                           {/* Manager Stylized Avatar */}
                           <div className={`w-12 h-12 rounded-2xl ${m.color} text-white font-extrabold flex items-center justify-center flex-shrink-0 text-sm shadow-md`}>
                             {m.initial}
@@ -1105,19 +1102,19 @@ export default function OperationsPage() {
                               </div>
                               <p className="text-[11px] font-bold text-indigo-600 mt-0.5">{m.role}</p>
                             </div>
-                            <div className="space-y-1 text-slate-500">
+                            <div className="space-y-1 text-slate-500 dark:text-slate-400">
                               <span className="flex items-center gap-1.5 font-semibold">
-                                <MapPin className="w-3.5 h-3.5 text-slate-400" /> {m.branch}
+                                <MapPin className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" /> {m.branch}
                               </span>
                               <span className="flex items-center gap-1.5 font-semibold">
-                                <Phone className="w-3.5 h-3.5 text-slate-400" /> {m.phone}
+                                <Phone className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" /> {m.phone}
                               </span>
                             </div>
                             
                             {/* Performance OEE index indicator */}
                             <div className="pt-2 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-[10px]">
-                              <span className="text-slate-400 font-bold">ක්‍රියාකාරී කාර්යක්ෂමතාව (OEE Score):</span>
-                              <span className="font-extrabold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-xl border border-emerald-100 flex items-center gap-1">
+                              <span className="text-slate-400 dark:text-slate-500 font-bold">ක්‍රියාකාරී කාර්යක්ෂමතාව (OEE Score):</span>
+                              <span className="font-extrabold text-emerald-600 bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded-xl border border-emerald-100 dark:border-emerald-900/30 flex items-center gap-1">
                                 <CheckCircle2 className="w-3 h-3 text-emerald-500" /> {m.OEE}
                               </span>
                             </div>

@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { useSearchParams, useRouter } from "next/navigation"
 import {
   FileBarChart2,
@@ -21,6 +21,7 @@ import {
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { useTheme } from "next-themes"
 
 // Recharts components must be rendered client-side
 import {
@@ -41,6 +42,14 @@ export default function ReportsHubPage() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const currentView = searchParams.get("view") || "sales-report"
+  const { resolvedTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  const isDark = mounted && resolvedTheme === "dark"
 
   const [searchTerm, setSearchTerm] = useState("")
 
@@ -136,11 +145,11 @@ export default function ReportsHubPage() {
 
       {/* FILTER CONTROL BAR */}
       <div className="bg-white dark:bg-slate-900 p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm flex flex-col sm:flex-row gap-4 items-center justify-between animate-fade-in">
-        <div className="flex items-center gap-2 text-xs font-bold text-slate-650 w-full sm:w-auto">
+        <div className="flex items-center gap-2 text-xs font-bold text-slate-650 dark:text-slate-300 w-full sm:w-auto">
           <span className="flex items-center gap-1.5"><Calendar className="w-4 h-4 text-indigo-500" /> කාල සීමාව:</span>
-          <Input type="date" value={fromDate} onChange={e => setFromDate(e.target.value)} className="h-8 text-xs rounded-xl bg-slate-50 border-slate-200" />
+          <Input type="date" value={fromDate} onChange={e => setFromDate(e.target.value)} className="h-8 text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100" />
           <span>සිට</span>
-          <Input type="date" value={toDate} onChange={e => setToDate(e.target.value)} className="h-8 text-xs rounded-xl bg-slate-50 border-slate-200" />
+          <Input type="date" value={toDate} onChange={e => setToDate(e.target.value)} className="h-8 text-xs rounded-xl bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100" />
         </div>
         <div className="flex items-center gap-2.5 w-full sm:w-auto">
           <div className="relative w-full sm:max-w-[200px]">
@@ -150,7 +159,7 @@ export default function ReportsHubPage() {
               placeholder="වාර්තා තුළ සොයන්න..."
               value={searchTerm}
               onChange={e => setSearchTerm(e.target.value)}
-              className="w-full pl-7 h-8 text-[11px] rounded-xl bg-slate-50 border-slate-200"
+              className="w-full pl-7 h-8 text-[11px] rounded-xl bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100"
             />
           </div>
           <Button
@@ -245,32 +254,32 @@ export default function ReportsHubPage() {
           
           {/* 1. SALES REPORT */}
           {currentView === "sales-report" && (
-            <Card className="rounded-2xl border-slate-200 bg-white p-6 shadow-sm space-y-6 animate-fade-in">
-              <CardHeader className="p-0 pb-4 border-b border-slate-100">
-                <CardTitle className="text-sm font-black text-slate-900 flex items-center gap-2">
+            <Card className="rounded-2xl border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-sm space-y-6 animate-fade-in text-slate-900 dark:text-white">
+              <CardHeader className="p-0 pb-4 border-b border-slate-100 dark:border-slate-800">
+                <CardTitle className="text-sm font-black text-slate-900 dark:text-white flex items-center gap-2">
                   <TrendingUp className="w-5 h-5 text-indigo-500" />
                   විකුණුම් කාර්යසාධන වාර්තාව (Sales Performance Report)
                 </CardTitle>
-                <CardDescription className="text-xs">දිස්ත්‍රික් සහ සුපිරි වෙළඳසැල් මට්ටමේ මාසික විකුණුම් සංසන්දනාත්මක විශ්ලේෂණය.</CardDescription>
+                <CardDescription className="text-xs text-slate-500 dark:text-slate-400">දිස්ත්‍රික් සහ සුපිරි වෙළඳසැල් මට්ටමේ මාසික විකුණුම් සංසන්දනාත්මක විශ්ලේෂණය.</CardDescription>
               </CardHeader>
               <div className="grid gap-6 md:grid-cols-3">
-                <div className="p-4 bg-indigo-50/40 rounded-2xl border border-indigo-100/60 text-xs">
-                  <span className="font-bold text-slate-500 block uppercase text-[10px]">මුළු විකුණුම් වටිනාකම (Total Sales)</span>
-                  <div className="text-2xl font-black text-indigo-650 mt-1">Rs. 1,480,000.00</div>
-                  <span className="text-[9px] text-emerald-600 font-bold block mt-1">▲ පසුගිය සතියට වඩා 8.2% ක වර්ධනයක්</span>
+                <div className="p-4 bg-indigo-50/40 dark:bg-indigo-950/20 rounded-2xl border border-indigo-100/60 dark:border-indigo-900/30 text-xs">
+                  <span className="font-bold text-slate-500 dark:text-slate-400 block uppercase text-[10px]">මුළු විකුණුම් වටිනාකම (Total Sales)</span>
+                  <div className="text-2xl font-black text-indigo-650 dark:text-indigo-400 mt-1">Rs. 1,480,000.00</div>
+                  <span className="text-[9px] text-emerald-600 dark:text-emerald-400 font-bold block mt-1">▲ පසුගිය සතියට වඩා 8.2% ක වර්ධනයක්</span>
                 </div>
-                <div className="p-4 bg-emerald-50/40 rounded-2xl border border-emerald-100/60 text-xs">
-                  <span className="font-bold text-slate-500 block uppercase text-[10px]">සාමාන්‍ය දෛනික ඇණවුම (Avg Order Value)</span>
-                  <div className="text-2xl font-black text-emerald-650 mt-1">Rs. 42,500.00</div>
-                  <span className="text-[9px] text-slate-400 block mt-1">සජීවීව පද්ධතියෙන් ගණනය කෙරේ</span>
+                <div className="p-4 bg-emerald-50/40 dark:bg-emerald-950/20 rounded-2xl border border-emerald-100/60 dark:border-indigo-900/30 text-xs">
+                  <span className="font-bold text-slate-500 dark:text-slate-400 block uppercase text-[10px]">සාමාන්‍ය දෛනික ඇණවුම (Avg Order Value)</span>
+                  <div className="text-2xl font-black text-emerald-650 dark:text-emerald-400 mt-1">Rs. 42,500.00</div>
+                  <span className="text-[9px] text-slate-400 dark:text-slate-500 block mt-1">සජීවීව පද්ධතියෙන් ගණනය කෙරේ</span>
                 </div>
-                <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200/60 text-xs">
-                  <span className="font-bold text-slate-500 block uppercase text-[10px]">සම්පූර්ණ කළ ඉන්වොයිස් (Invoices Issued)</span>
-                  <div className="text-2xl font-black text-slate-800 mt-1">42 Invoices</div>
-                  <span className="text-[9px] text-slate-400 block mt-1">විගණන තත්ත්වය: අනුමතයි (Approved)</span>
+                <div className="p-4 bg-slate-50 dark:bg-slate-800/40 rounded-2xl border border-slate-200/60 dark:border-slate-700/60 text-xs">
+                  <span className="font-bold text-slate-500 dark:text-slate-400 block uppercase text-[10px]">සම්පූර්ණ කළ ඉන්වොයිස් (Invoices Issued)</span>
+                  <div className="text-2xl font-black text-slate-800 dark:text-slate-200 mt-1">42 Invoices</div>
+                  <span className="text-[9px] text-slate-400 dark:text-slate-500 block mt-1">විගණන තත්ත්වය: අනුමතයි (Approved)</span>
                 </div>
               </div>
-              <div className="h-64 border border-slate-100 rounded-2xl p-4 bg-slate-50/20">
+              <div className="h-64 border border-slate-100 dark:border-slate-800 rounded-2xl p-4 bg-slate-50/20 dark:bg-slate-900/50">
                 <ResponsiveContainer width="100%" height="100%">
                   <AreaChart data={salesData}>
                     <defs>
@@ -279,9 +288,9 @@ export default function ReportsHubPage() {
                         <stop offset="95%" stopColor="#6366f1" stopOpacity={0}/>
                       </linearGradient>
                     </defs>
-                    <XAxis dataKey="date" stroke="#94a3b8" fontSize={10} />
-                    <YAxis stroke="#94a3b8" fontSize={10} />
-                    <Tooltip />
+                    <XAxis dataKey="date" stroke={isDark ? "#94a3b8" : "#64748b"} fontSize={10} tickLine={false} axisLine={false} />
+                    <YAxis stroke={isDark ? "#94a3b8" : "#64748b"} fontSize={10} tickLine={false} axisLine={false} />
+                    <Tooltip contentStyle={{ backgroundColor: isDark ? "#0f172a" : "#ffffff", borderColor: isDark ? "#334155" : "#e2e8f0", color: isDark ? "#f8fafc" : "#0f172a" }} />
                     <Area type="monotone" dataKey="sales" stroke="#6366f1" strokeWidth={2} fillOpacity={1} fill="url(#colorSales)" name="Sales (Rs.)" />
                   </AreaChart>
                 </ResponsiveContainer>
@@ -291,42 +300,42 @@ export default function ReportsHubPage() {
 
           {/* 2. RECOVERY REPORT */}
           {currentView === "recovery-report" && (
-            <Card className="rounded-2xl border-slate-200 bg-white p-6 shadow-sm space-y-6 animate-fade-in">
-              <CardHeader className="p-0 pb-4 border-b border-slate-100">
-                <CardTitle className="text-sm font-black text-slate-900 flex items-center gap-2">
+            <Card className="rounded-2xl border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-sm space-y-6 animate-fade-in text-slate-900 dark:text-white">
+              <CardHeader className="p-0 pb-4 border-b border-slate-100 dark:border-slate-800">
+                <CardTitle className="text-sm font-black text-slate-900 dark:text-white flex items-center gap-2">
                   <TrendingUp className="w-5 h-5 text-indigo-500" />
                   ණය අයකරගැනීම් ක්‍රියාකාරී වාර්තාව (Debt Recovery Efficiency Report)
                 </CardTitle>
-                <CardDescription className="text-xs">සුපිරි වෙළඳසැල් ජාල වලින් ලැබීමට ඇති ණය අයකරගැනීමේ වේගය සහ චෙක්පත් පියවීමේ මට්ටම.</CardDescription>
+                <CardDescription className="text-xs text-slate-500 dark:text-slate-400">සුපිරි වෙළඳසැල් ජාල වලින් ලැබීමට ඇති ණය අයකරගැනීමේ වේගය සහ චෙක්පත් පියවීමේ මට්ටම.</CardDescription>
               </CardHeader>
               <div className="grid gap-6 md:grid-cols-2">
-                <div className="p-5 border border-slate-150 rounded-2xl bg-slate-50/20 space-y-3">
-                  <h4 className="font-extrabold text-slate-900 text-xs flex items-center gap-1"><Award className="w-4 h-4 text-emerald-500" /> අයකරගැනීමේ කාර්යක්ෂමතාවය</h4>
+                <div className="p-5 border border-slate-150 dark:border-slate-800 rounded-2xl bg-slate-50/20 dark:bg-slate-900/50 space-y-3">
+                  <h4 className="font-extrabold text-slate-900 dark:text-slate-100 text-xs flex items-center gap-1"><Award className="w-4 h-4 text-emerald-500" /> අයකරගැනීමේ කාර්යක්ෂමතාවය</h4>
                   <div className="relative w-28 h-28 mx-auto flex items-center justify-center">
                     <svg className="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
-                      <path className="text-slate-100" strokeWidth="3" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                      <path className="text-slate-100 dark:text-slate-800" strokeWidth="3" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
                       <path className="text-emerald-500" strokeDasharray="88, 100" strokeWidth="3" strokeLinecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
                     </svg>
-                    <span className="absolute text-base font-black text-slate-800">88%</span>
+                    <span className="absolute text-base font-black text-slate-800 dark:text-white">88%</span>
                   </div>
-                  <p className="text-[10px] text-slate-500 text-center font-bold">චෙක්පත් පියවීමේ සාර්ථකත්වය (Cheque Clearance Success Rate)</p>
+                  <p className="text-[10px] text-slate-500 dark:text-slate-400 text-center font-bold">චෙක්පත් පියවීමේ සාර්ථකත්වය (Cheque Clearance Success Rate)</p>
                 </div>
-                <div className="p-5 border border-slate-150 rounded-2xl bg-slate-50/20 text-xs space-y-3">
-                  <h4 className="font-extrabold text-slate-900 flex items-center gap-1.5"><Info className="w-4 h-4 text-indigo-500" /> අයකරගත් මාධ්‍යයන්</h4>
+                <div className="p-5 border border-slate-150 dark:border-slate-800 rounded-2xl bg-slate-50/20 dark:bg-slate-900/50 text-xs space-y-3">
+                  <h4 className="font-extrabold text-slate-900 dark:text-slate-100 flex items-center gap-1.5"><Info className="w-4 h-4 text-indigo-500" /> අයකරගත් මාධ්‍යයන්</h4>
                   <div className="space-y-2">
                     <div>
-                      <div className="flex justify-between font-bold mb-1">
+                      <div className="flex justify-between font-bold mb-1 text-slate-700 dark:text-slate-300">
                         <span>BOC/Sampath චෙක්පත් (Cheque)</span>
                         <span>Rs. 850,000 (72%)</span>
                       </div>
-                      <div className="w-full bg-slate-100 rounded-full h-1.5"><div className="bg-indigo-600 h-full rounded-full" style={{ width: "72%" }} /></div>
+                      <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-1.5"><div className="bg-indigo-600 h-full rounded-full" style={{ width: "72%" }} /></div>
                     </div>
                     <div>
-                      <div className="flex justify-between font-bold mb-1">
+                      <div className="flex justify-between font-bold mb-1 text-slate-700 dark:text-slate-300">
                         <span>මුදල් ලබාගැනීම් (Cash)</span>
                         <span>Rs. 320,000 (28%)</span>
                       </div>
-                      <div className="w-full bg-slate-100 rounded-full h-1.5"><div className="bg-emerald-500 h-full rounded-full" style={{ width: "28%" }} /></div>
+                      <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-1.5"><div className="bg-emerald-500 h-full rounded-full" style={{ width: "28%" }} /></div>
                     </div>
                   </div>
                 </div>
@@ -336,28 +345,28 @@ export default function ReportsHubPage() {
 
           {/* 3. CREDITORS REPORT */}
           {currentView === "creditors-report" && (
-            <Card className="rounded-2xl border-slate-200 bg-white p-6 shadow-sm space-y-6 animate-fade-in">
-              <CardHeader className="p-0 pb-4 border-b border-slate-100">
-                <CardTitle className="text-sm font-black text-slate-900 flex items-center gap-2">
+            <Card className="rounded-2xl border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-sm space-y-6 animate-fade-in text-slate-900 dark:text-white">
+              <CardHeader className="p-0 pb-4 border-b border-slate-100 dark:border-slate-800">
+                <CardTitle className="text-sm font-black text-slate-900 dark:text-white flex items-center gap-2">
                   <ShieldAlert className="w-5 h-5 text-rose-500" />
                   ණයහිමියන්ගේ වයස් විශ්ලේෂණ වාර්තාව (Creditors Aging Report)
                 </CardTitle>
-                <CardDescription className="text-xs">සැපයුම්කරුවන් වෙත ගෙවීමට ඇති ණය සහ ප්‍රමාද කාල පරාසයන්.</CardDescription>
+                <CardDescription className="text-xs text-slate-500 dark:text-slate-400">සැපයුම්කරුවන් වෙත ගෙවීමට ඇති ණය සහ ප්‍රමාද කාල පරාසයන්.</CardDescription>
               </CardHeader>
               <div className="grid gap-6 md:grid-cols-3">
-                <div className="p-4 bg-rose-50/[0.04] rounded-2xl border border-rose-100 text-xs">
-                  <span className="font-bold text-slate-500 block uppercase text-[10px]">මුළු ණයහිමි වගකීම (Total Payables)</span>
+                <div className="p-4 bg-rose-50/[0.04] dark:bg-rose-950/10 rounded-2xl border border-rose-100 dark:border-rose-900/30 text-xs">
+                  <span className="font-bold text-slate-500 dark:text-slate-400 block uppercase text-[10px]">මුළු ණයහිමි වගකීම (Total Payables)</span>
                   <div className="text-2xl font-black text-rose-600 mt-1">Rs. 465,000.00</div>
-                  <span className="text-[9px] text-slate-400 block mt-1">කර්මාන්තශාලා අමුද්‍රව්‍ය හිඟ මුදල්</span>
+                  <span className="text-[9px] text-slate-400 dark:text-slate-500 block mt-1">කර්මාන්තශාලා අමුද්‍රව්‍ය හිඟ මුදල්</span>
                 </div>
-                <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200/60 text-xs col-span-2">
-                  <span className="font-bold text-slate-500 block uppercase text-[10px] mb-2">ප්‍රමාද කාල වයස් ව්‍යුහය (Creditors Aging)</span>
+                <div className="p-4 bg-slate-50 dark:bg-slate-800/40 rounded-2xl border border-slate-200/60 dark:border-slate-700/60 text-xs col-span-2">
+                  <span className="font-bold text-slate-500 dark:text-slate-400 block uppercase text-[10px] mb-2">ප්‍රමාද කාල වයස් ව්‍යුහය (Creditors Aging)</span>
                   <div className="h-20">
                     <ResponsiveContainer width="100%" height="100%">
                       <BarChart data={creditAgingData}>
-                        <XAxis dataKey="range" stroke="#94a3b8" fontSize={9} />
-                        <YAxis stroke="#94a3b8" fontSize={9} />
-                        <Tooltip />
+                        <XAxis dataKey="range" stroke={isDark ? "#94a3b8" : "#64748b"} fontSize={9} tickLine={false} axisLine={false} />
+                        <YAxis stroke={isDark ? "#94a3b8" : "#64748b"} fontSize={9} tickLine={false} axisLine={false} />
+                        <Tooltip contentStyle={{ backgroundColor: isDark ? "#0f172a" : "#ffffff", borderColor: isDark ? "#334155" : "#e2e8f0", color: isDark ? "#f8fafc" : "#0f172a" }} />
                         <Bar dataKey="amount" fill="#f43f5e" radius={[4, 4, 0, 0]} name="ණයහිමි Dues (Rs.)" />
                       </BarChart>
                     </ResponsiveContainer>
@@ -369,28 +378,28 @@ export default function ReportsHubPage() {
 
           {/* 4. DEBTORS REPORT */}
           {currentView === "debtors-report" && (
-            <Card className="rounded-2xl border-slate-200 bg-white p-6 shadow-sm space-y-6 animate-fade-in">
-              <CardHeader className="p-0 pb-4 border-b border-slate-100">
-                <CardTitle className="text-sm font-black text-slate-900 flex items-center gap-2">
+            <Card className="rounded-2xl border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-sm space-y-6 animate-fade-in text-slate-900 dark:text-white">
+              <CardHeader className="p-0 pb-4 border-b border-slate-100 dark:border-slate-800">
+                <CardTitle className="text-sm font-black text-slate-900 dark:text-white flex items-center gap-2">
                   <ShieldAlert className="w-5 h-5 text-indigo-500" />
                   ණයගැතියන්ගේ වයස් විශ්ලේෂණ වාර්තාව (Debtors Aging Report)
                 </CardTitle>
-                <CardDescription className="text-xs">පාරිභෝගිකයින්ගෙන් සමාගමට ලැබීමට ඇති ණය සහ ඒවායේ ප්‍රමාද දින ගණන.</CardDescription>
+                <CardDescription className="text-xs text-slate-500 dark:text-slate-400">පාරිභෝගිකයින්ගෙන් සමාගමට ලැබීමට ඇති ණය සහ ඒවායේ ප්‍රමාද දින ගණන.</CardDescription>
               </CardHeader>
               <div className="grid gap-6 md:grid-cols-3">
-                <div className="p-4 bg-indigo-50/40 rounded-2xl border border-indigo-100 text-xs">
-                  <span className="font-bold text-slate-500 block uppercase text-[10px]">මුළු ණයගැති හිඟය (Total Receivables)</span>
-                  <div className="text-2xl font-black text-indigo-650 mt-1">Rs. 250,000.00</div>
+                <div className="p-4 bg-indigo-50/40 dark:bg-indigo-950/20 rounded-2xl border border-indigo-100 dark:border-indigo-900/30 text-xs">
+                  <span className="font-bold text-slate-500 dark:text-slate-400 block uppercase text-[10px]">මුළු ණයගැති හිඟය (Total Receivables)</span>
+                  <div className="text-2xl font-black text-indigo-650 dark:text-indigo-400 mt-1">Rs. 250,000.00</div>
                   <span className="text-[9px] text-rose-600 font-bold block mt-1">▲ දින 60 ඉක්මවූ ණය Rs. 45,000 ක් පවතී</span>
                 </div>
-                <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200/60 text-xs col-span-2">
-                  <span className="font-bold text-slate-500 block uppercase text-[10px] mb-2">ප්‍රමාද කාල වයස් ව්‍යුහය (Debtors Aging)</span>
+                <div className="p-4 bg-slate-50 dark:bg-slate-800/40 rounded-2xl border border-slate-200/60 dark:border-slate-700/60 text-xs col-span-2">
+                  <span className="font-bold text-slate-500 dark:text-slate-400 block uppercase text-[10px] mb-2">ප්‍රමාද කාල වයස් ව්‍යුහය (Debtors Aging)</span>
                   <div className="h-20">
                     <ResponsiveContainer width="100%" height="100%">
                       <BarChart data={debtAgingData}>
-                        <XAxis dataKey="range" stroke="#94a3b8" fontSize={9} />
-                        <YAxis stroke="#94a3b8" fontSize={9} />
-                        <Tooltip />
+                        <XAxis dataKey="range" stroke={isDark ? "#94a3b8" : "#64748b"} fontSize={9} tickLine={false} axisLine={false} />
+                        <YAxis stroke={isDark ? "#94a3b8" : "#64748b"} fontSize={9} tickLine={false} axisLine={false} />
+                        <Tooltip contentStyle={{ backgroundColor: isDark ? "#0f172a" : "#ffffff", borderColor: isDark ? "#334155" : "#e2e8f0", color: isDark ? "#f8fafc" : "#0f172a" }} />
                         <Bar dataKey="amount" fill="#6366f1" radius={[4, 4, 0, 0]} name="ණයගැති Dues (Rs.)" />
                       </BarChart>
                     </ResponsiveContainer>
@@ -402,46 +411,46 @@ export default function ReportsHubPage() {
 
           {/* 5. CHEMICAL STOCKS REPORT */}
           {currentView === "chemical-stocks" && (
-            <Card className="rounded-2xl border-slate-200 bg-white p-6 shadow-sm space-y-6 animate-fade-in">
-              <CardHeader className="p-0 pb-4 border-b border-slate-100">
-                <CardTitle className="text-sm font-black text-slate-900 flex items-center gap-2">
+            <Card className="rounded-2xl border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-sm space-y-6 animate-fade-in text-slate-900 dark:text-white">
+              <CardHeader className="p-0 pb-4 border-b border-slate-100 dark:border-slate-800">
+                <CardTitle className="text-sm font-black text-slate-900 dark:text-white flex items-center gap-2">
                   <Boxes className="w-5 h-5 text-indigo-500" />
                   මූලික රසායනික ද්‍රව්‍ය තොග වාර්තාව (Raw Chemicals Inventory Status)
                 </CardTitle>
-                <CardDescription className="text-xs">සෝයා පිටි, පොල්තෙල් සහ නිෂ්පාදනයට අවශ්‍ය අනෙකුත් රසායනික අමුද්‍රව්‍ය සංචිත වාර්තාව.</CardDescription>
+                <CardDescription className="text-xs text-slate-500 dark:text-slate-400">සෝයා පිටි, පොල්තෙල් සහ නිෂ්පාදනයට අවශ්‍ය අනෙකුත් රසායනික අමුද්‍රව්‍ය සංචිත වාර්තාව.</CardDescription>
               </CardHeader>
-              <div className="overflow-x-auto border border-slate-100 rounded-2xl">
+              <div className="overflow-x-auto border border-slate-100 dark:border-slate-800 rounded-2xl">
                 <table className="w-full text-xs text-left border-collapse">
                   <thead>
-                    <tr className="border-b border-slate-150 bg-slate-50/50 font-bold uppercase tracking-wider text-slate-500 text-[10px]">
+                    <tr className="border-b border-slate-150 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 text-[10px]">
                       <th className="py-3 px-6">රසායනික කේතය (Chemical ID)</th>
                       <th className="py-3 px-6">අමුද්‍රව්‍ය විස්තරය (Description)</th>
                       <th className="py-3 px-6">ආරක්ෂිත සීමාව (Safety Limit)</th>
-                      <th className="py-3 px-6 font-bold text-slate-800">පවතින තොගය (Current Qty)</th>
+                      <th className="py-3 px-6 font-bold text-slate-800 dark:text-slate-200">පවතින තොගය (Current Qty)</th>
                       <th className="py-3 px-6 text-right">තත්ත්වය (Safety Status)</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-100 font-semibold text-slate-700">
+                  <tbody className="divide-y divide-slate-100 dark:divide-slate-800 font-semibold text-slate-700 dark:text-slate-300">
                     <tr>
-                      <td className="py-3 px-6 text-indigo-650 font-bold">SOYA-FLR-01</td>
-                      <td className="py-3 px-6 text-slate-800">සෝයා පිටි (Premium Soya Flour)</td>
-                      <td className="py-3 px-6 text-slate-400">1,000 kg</td>
-                      <td className="py-3 px-6 font-black">4,500 kg</td>
-                      <td className="py-3 px-6 text-right"><span className="bg-emerald-50 text-emerald-700 border border-emerald-100 rounded-xl px-2 py-0.5 font-bold">Stable</span></td>
+                      <td className="py-3 px-6 text-indigo-650 dark:text-indigo-400 font-bold">SOYA-FLR-01</td>
+                      <td className="py-3 px-6 text-slate-800 dark:text-slate-200">සෝයා පිටි (Premium Soya Flour)</td>
+                      <td className="py-3 px-6 text-slate-400 dark:text-slate-500">1,000 kg</td>
+                      <td className="py-3 px-6 font-black text-slate-900 dark:text-white">4,500 kg</td>
+                      <td className="py-3 px-6 text-right"><span className="bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-900/50 rounded-xl px-2 py-0.5 font-bold">Stable</span></td>
                     </tr>
                     <tr>
-                      <td className="py-3 px-6 text-indigo-650 font-bold">COCO-OIL-02</td>
-                      <td className="py-3 px-6 text-slate-800">පිරිපහදු නොකළ පොල්තෙල් (Crude Coconut Oil)</td>
-                      <td className="py-3 px-6 text-slate-400">500 L</td>
-                      <td className="py-3 px-6 font-black">2,200 L</td>
-                      <td className="py-3 px-6 text-right"><span className="bg-emerald-50 text-emerald-700 border border-emerald-100 rounded-xl px-2 py-0.5 font-bold">Stable</span></td>
+                      <td className="py-3 px-6 text-indigo-650 dark:text-indigo-400 font-bold">COCO-OIL-02</td>
+                      <td className="py-3 px-6 text-slate-800 dark:text-slate-200">පිරිපහදු නොකළ පොල්තෙල් (Crude Coconut Oil)</td>
+                      <td className="py-3 px-6 text-slate-400 dark:text-slate-500">500 L</td>
+                      <td className="py-3 px-6 font-black text-slate-900 dark:text-white">2,200 L</td>
+                      <td className="py-3 px-6 text-right"><span className="bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-900/50 rounded-xl px-2 py-0.5 font-bold">Stable</span></td>
                     </tr>
                     <tr>
-                      <td className="py-3 px-6 text-indigo-650 font-bold">CAUSTIC-S-03</td>
-                      <td className="py-3 px-6 text-slate-800">Caustic Soda (රසායනික අමුද්‍රව්‍ය)</td>
-                      <td className="py-3 px-6 text-slate-400">200 kg</td>
-                      <td className="py-3 px-6 text-black">80 kg</td>
-                      <td className="py-3 px-6 text-right"><span className="bg-rose-50 text-rose-700 border border-rose-100 rounded-xl px-2 py-0.5 font-bold animate-pulse">Low Reserve</span></td>
+                      <td className="py-3 px-6 text-indigo-650 dark:text-indigo-400 font-bold">CAUSTIC-S-03</td>
+                      <td className="py-3 px-6 text-slate-800 dark:text-slate-200">Caustic Soda (රසායනික අමුද්‍රව්‍ය)</td>
+                      <td className="py-3 px-6 text-slate-400 dark:text-slate-500">200 kg</td>
+                      <td className="py-3 px-6 font-bold text-slate-900 dark:text-white">80 kg</td>
+                      <td className="py-3 px-6 text-right"><span className="bg-rose-50 dark:bg-rose-950/30 text-rose-700 dark:text-rose-400 border border-rose-100 dark:border-rose-900/50 rounded-xl px-2 py-0.5 font-bold animate-pulse">Low Reserve</span></td>
                     </tr>
                   </tbody>
                 </table>
@@ -451,46 +460,46 @@ export default function ReportsHubPage() {
 
           {/* 6. FINISHED GOODS REPORT */}
           {currentView === "finished-goods" && (
-            <Card className="rounded-2xl border-slate-200 bg-white p-6 shadow-sm space-y-6 animate-fade-in">
-              <CardHeader className="p-0 pb-4 border-b border-slate-100">
-                <CardTitle className="text-sm font-black text-slate-900 flex items-center gap-2">
+            <Card className="rounded-2xl border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-sm space-y-6 animate-fade-in text-slate-900 dark:text-white">
+              <CardHeader className="p-0 pb-4 border-b border-slate-100 dark:border-slate-800">
+                <CardTitle className="text-sm font-black text-slate-900 dark:text-white flex items-center gap-2">
                   <Package className="w-5 h-5 text-indigo-500" />
                   නිමි භාණ්ඩ තොග වාර්තාව (Finished Goods Inventory Card)
                 </CardTitle>
-                <CardDescription className="text-xs">ඇසුරුම් කර අවසන් වූ සෝයාමීට් පැකට්, පොල්තෙල් බෝතල් සහ සම්බා සහල් මලු ගබඩා තොග ශේෂය.</CardDescription>
+                <CardDescription className="text-xs text-slate-500 dark:text-slate-400">ඇසුරුම් කර අවසන් වූ සෝයාමීට් පැකට්, පොල්තෙල් බෝතල් සහ සම්බා සහල් මලු ගබඩා තොග ශේෂය.</CardDescription>
               </CardHeader>
-              <div className="overflow-x-auto border border-slate-100 rounded-2xl">
+              <div className="overflow-x-auto border border-slate-100 dark:border-slate-800 rounded-2xl">
                 <table className="w-full text-xs text-left border-collapse">
                   <thead>
-                    <tr className="border-b border-slate-150 bg-slate-50/50 font-bold uppercase tracking-wider text-slate-500 text-[10px]">
+                    <tr className="border-b border-slate-150 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 text-[10px]">
                       <th className="py-3 px-6">භාණ්ඩ කේතය (SKU ID)</th>
                       <th className="py-3 px-6">නිෂ්පාදන නම (Description)</th>
                       <th className="py-3 px-6">කාණ්ඩ කේතය (Latest Batch)</th>
-                      <th className="py-3 px-6 font-bold text-slate-800">නිමි තොග ප්‍රමාණය (Available Stock)</th>
+                      <th className="py-3 px-6 font-bold text-slate-800 dark:text-slate-200">නිමි තොග ප්‍රමාණය (Available Stock)</th>
                       <th className="py-3 px-6 text-right">Forecasting (තොග ප්‍රමාණවත් කාලය)</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-100 font-semibold text-slate-700">
+                  <tbody className="divide-y divide-slate-100 dark:divide-slate-800 font-semibold text-slate-700 dark:text-slate-300">
                     <tr>
-                      <td className="py-3 px-6 text-indigo-650 font-bold">SOYA-PKT-90g</td>
-                      <td className="py-3 px-6 text-slate-800">සෝයාමීට් පැකට් (90g Soyameet)</td>
-                      <td className="py-3 px-6 text-slate-500">ERP-S846</td>
-                      <td className="py-3 px-6 font-black text-indigo-650">12,000 Packets</td>
-                      <td className="py-3 px-6 text-right"><span className="text-emerald-600 font-bold">දින 45 ක් සපුරයි</span></td>
+                      <td className="py-3 px-6 text-indigo-650 dark:text-indigo-400 font-bold">SOYA-PKT-90g</td>
+                      <td className="py-3 px-6 text-slate-800 dark:text-slate-200">සෝයාමීට් පැකට් (90g Soyameet)</td>
+                      <td className="py-3 px-6 text-slate-500 dark:text-slate-400">ERP-S846</td>
+                      <td className="py-3 px-6 font-black text-indigo-650 dark:text-indigo-400">12,000 Packets</td>
+                      <td className="py-3 px-6 text-right"><span className="text-emerald-600 dark:text-emerald-450 font-bold">දින 45 ක් සපුරයි</span></td>
                     </tr>
                     <tr>
-                      <td className="py-3 px-6 text-indigo-650 font-bold">COCO-BTL-1L</td>
-                      <td className="py-3 px-6 text-slate-800">පොල්තෙල් බෝතල් (1L Coconut Oil Bottles)</td>
-                      <td className="py-3 px-6 text-slate-500">ERP-C722</td>
-                      <td className="py-3 px-6 font-black text-amber-600">850 Bottles</td>
-                      <td className="py-3 px-6 text-right"><span className="text-rose-600 font-bold animate-pulse">දින 8 කින් අවසන් වේ</span></td>
+                      <td className="py-3 px-6 text-indigo-650 dark:text-indigo-400 font-bold">COCO-BTL-1L</td>
+                      <td className="py-3 px-6 text-slate-800 dark:text-slate-200">පොල්තෙල් බෝතල් (1L Coconut Oil Bottles)</td>
+                      <td className="py-3 px-6 text-slate-500 dark:text-slate-400">ERP-C722</td>
+                      <td className="py-3 px-6 font-black text-amber-600 dark:text-amber-400">850 Bottles</td>
+                      <td className="py-3 px-6 text-right"><span className="text-rose-600 dark:text-rose-455 font-bold animate-pulse">දින 8 කින් අවසන් වේ</span></td>
                     </tr>
                     <tr>
-                      <td className="py-3 px-6 text-indigo-650 font-bold">RICE-BAG-10kg</td>
-                      <td className="py-3 px-6 text-slate-800">සම්බා සහල් මලු (10kg Samba Rice Bags)</td>
-                      <td className="py-3 px-6 text-slate-500">ERP-R109</td>
-                      <td className="py-3 px-6 font-black text-indigo-650">320 Bags</td>
-                      <td className="py-3 px-6 text-right"><span className="text-emerald-600 font-bold">දින 20 ක් සපුරයි</span></td>
+                      <td className="py-3 px-6 text-indigo-650 dark:text-indigo-400 font-bold">RICE-BAG-10kg</td>
+                      <td className="py-3 px-6 text-slate-800 dark:text-slate-200">සම්බා සහල් මලු (10kg Samba Rice Bags)</td>
+                      <td className="py-3 px-6 text-slate-500 dark:text-slate-400">ERP-R109</td>
+                      <td className="py-3 px-6 font-black text-indigo-650 dark:text-indigo-400">320 Bags</td>
+                      <td className="py-3 px-6 text-right"><span className="text-emerald-600 dark:text-emerald-450 font-bold">දින 20 ක් සපුරයි</span></td>
                     </tr>
                   </tbody>
                 </table>
@@ -500,46 +509,46 @@ export default function ReportsHubPage() {
 
           {/* 7. FIXED ASSETS REPORT */}
           {currentView === "fixed-assets" && (
-            <Card className="rounded-2xl border-slate-200 bg-white p-6 shadow-sm space-y-6 animate-fade-in">
-              <CardHeader className="p-0 pb-4 border-b border-slate-100">
-                <CardTitle className="text-sm font-black text-slate-900 flex items-center gap-2">
+            <Card className="rounded-2xl border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-sm space-y-6 animate-fade-in text-slate-900 dark:text-white">
+              <CardHeader className="p-0 pb-4 border-b border-slate-100 dark:border-slate-800">
+                <CardTitle className="text-sm font-black text-slate-900 dark:text-white flex items-center gap-2">
                   <FileBarChart2 className="w-5 h-5 text-indigo-500" />
                   ස්ථාවර වත්කම් සහ ක්ෂයවීම් වාර්තාව (Company Fixed Assets Ledger)
                 </CardTitle>
-                <CardDescription className="text-xs">සමාගමේ යන්ත්‍රෝපකරණ, ප්‍රවාහන වාහන සහ ඉඩම් ගොඩනැගිලිවල ඓතිහාසික පිරිවැය සහ වත්මන් පොත් වටිනාකම.</CardDescription>
+                <CardDescription className="text-xs text-slate-500 dark:text-slate-400">සමාගමේ යන්ත්‍රෝපකරණ, ප්‍රවාහන වාහන සහ ඉඩම් ගොඩනැගිලිවල ඓතිහාසික පිරිවැය සහ වත්මන් පොත් වටිනාකම.</CardDescription>
               </CardHeader>
-              <div className="overflow-x-auto border border-slate-100 rounded-2xl">
+              <div className="overflow-x-auto border border-slate-100 dark:border-slate-800 rounded-2xl">
                 <table className="w-full text-xs text-left border-collapse">
                   <thead>
-                    <tr className="border-b border-slate-150 bg-slate-50/50 font-bold uppercase tracking-wider text-slate-500 text-[10px]">
+                    <tr className="border-b border-slate-150 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 text-[10px]">
                       <th className="py-3 px-6">වත්කම් කාණ්ඩය (Asset Class)</th>
                       <th className="py-3 px-6">ඓතිහාසික පිරිවැය (Cost)</th>
                       <th className="py-3 px-6">ක්ෂයවීම් ප්‍රතිශතය (Rate)</th>
-                      <th className="py-3 px-6 text-rose-650">එකතු වූ ක්ෂයවීම් (Accum. Depr.)</th>
-                      <th className="py-3 px-6 text-right font-bold text-emerald-650">වත්මන් පොත් වටිනාකම (Net Book Value)</th>
+                      <th className="py-3 px-6 text-rose-650 dark:text-rose-400">එකතු වූ ක්ෂයවීම් (Accum. Depr.)</th>
+                      <th className="py-3 px-6 text-right font-bold text-emerald-650 dark:text-emerald-400">වත්මන් පොත් වටිනාකම (Net Book Value)</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-100 font-semibold text-slate-700">
+                  <tbody className="divide-y divide-slate-100 dark:divide-slate-800 font-semibold text-slate-700 dark:text-slate-300">
                     <tr>
-                      <td className="py-3.5 px-6 text-slate-800">කර්මාන්තශාලා යන්ත්‍රෝපකරණ (Plant & Machinery)</td>
+                      <td className="py-3.5 px-6 text-slate-800 dark:text-slate-200">කර්මාන්තශාලා යන්ත්‍රෝපකරණ (Plant & Machinery)</td>
                       <td className="py-3.5 px-6">Rs. 1,500,000.00</td>
                       <td className="py-3.5 px-6">10% per Annum</td>
-                      <td className="py-3.5 px-6 text-rose-500">Rs. 150,000.00</td>
-                      <td className="py-3.5 px-6 text-right font-black text-emerald-650">Rs. 1,350,000.00</td>
+                      <td className="py-3.5 px-6 text-rose-500 dark:text-rose-400">Rs. 150,000.00</td>
+                      <td className="py-3.5 px-6 text-right font-black text-emerald-650 dark:text-emerald-400">Rs. 1,350,000.00</td>
                     </tr>
                     <tr>
-                      <td className="py-3.5 px-6 text-slate-800">බෙදාහැරීමේ ලොරි රථ (Delivery Lorries)</td>
+                      <td className="py-3.5 px-6 text-slate-800 dark:text-slate-200">බෙදාහැරීමේ ලොරි රථ (Delivery Lorries)</td>
                       <td className="py-3.5 px-6">Rs. 1,200,000.00</td>
                       <td className="py-3.5 px-6">20% per Annum</td>
-                      <td className="py-3.5 px-6 text-rose-500">Rs. 240,000.00</td>
-                      <td className="py-3.5 px-6 text-right font-black text-emerald-650">Rs. 960,000.00</td>
+                      <td className="py-3.5 px-6 text-rose-500 dark:text-rose-400">Rs. 240,000.00</td>
+                      <td className="py-3.5 px-6 text-right font-black text-emerald-650 dark:text-emerald-400">Rs. 960,000.00</td>
                     </tr>
                     <tr>
-                      <td className="py-3.5 px-6 text-slate-800">කර්මාන්තශාලා ඉඩම සහ ගොඩනැගිලි (Land & Buildings)</td>
+                      <td className="py-3.5 px-6 text-slate-800 dark:text-slate-200">කර්මාන්තශාලා ඉඩම සහ ගොඩනැගිලි (Land & Buildings)</td>
                       <td className="py-3.5 px-6">Rs. 2,000,000.00</td>
                       <td className="py-3.5 px-6">0% (Land appreciates)</td>
-                      <td className="py-3.5 px-6 text-emerald-600">Rs. 0.00</td>
-                      <td className="py-3.5 px-6 text-right font-black text-emerald-650">Rs. 2,000,000.00</td>
+                      <td className="py-3.5 px-6 text-emerald-600 dark:text-emerald-400">Rs. 0.00</td>
+                      <td className="py-3.5 px-6 text-right font-black text-emerald-650 dark:text-emerald-400">Rs. 2,000,000.00</td>
                     </tr>
                   </tbody>
                 </table>
@@ -596,39 +605,39 @@ export default function ReportsHubPage() {
 
           {/* 9. BANK LOANS REPORT */}
           {currentView === "bank-loans" && (
-            <Card className="rounded-2xl border-slate-200 bg-white p-6 shadow-sm space-y-6 animate-fade-in">
-              <CardHeader className="p-0 pb-4 border-b border-slate-100">
-                <CardTitle className="text-sm font-black text-slate-900 flex items-center gap-2">
+            <Card className="rounded-2xl border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-sm space-y-6 animate-fade-in text-slate-900 dark:text-white">
+              <CardHeader className="p-0 pb-4 border-b border-slate-100 dark:border-slate-800">
+                <CardTitle className="text-sm font-black text-slate-900 dark:text-white flex items-center gap-2">
                   <CircleDollarSign className="w-5 h-5 text-indigo-500" />
                   බැංකු ණය සහ පොලී ගෙවීම් වාර්තාව (Bank Loans & Liability Statement)
                 </CardTitle>
-                <CardDescription className="text-xs">සමාගම විසින් මෙහෙයුම් කටයුතු පුළුල් කිරීමට ලංකා බැංකුව (BOC) වැනි රාජ්‍ය බැංකු වලින් ලබාගත් දිගුකාලීන ණය ලේඛනය.</CardDescription>
+                <CardDescription className="text-xs text-slate-500 dark:text-slate-400">සමාගම විසින් මෙහෙයුම් කටයුතු පුළුල් කිරීමට ලංකා බැංකුව (BOC) වැනි රාජ්‍ය බැංකු වලින් ලබාගත් දිගුකාලීන ණය ලේඛනය.</CardDescription>
               </CardHeader>
-              <div className="overflow-x-auto border border-slate-100 rounded-2xl">
+              <div className="overflow-x-auto border border-slate-100 dark:border-slate-800 rounded-2xl">
                 <table className="w-full text-xs text-left border-collapse">
                   <thead>
-                    <tr className="border-b border-slate-150 bg-slate-50/50 font-bold uppercase tracking-wider text-slate-500 text-[10px]">
+                    <tr className="border-b border-slate-150 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 text-[10px]">
                       <th className="py-3 px-6">ණය විස්තරය (Loan Class)</th>
                       <th className="py-3 px-6">බැංකුව (Banker)</th>
                       <th className="py-3 px-6">පොලී අනුපාතය (Rate)</th>
-                      <th className="py-3 px-6 font-bold text-emerald-650">ගෙවා නිම කළ ප්‍රමාණය (Paid Dues)</th>
-                      <th className="py-3 px-6 text-right font-bold text-rose-600">හිඟ මුදල් ප්‍රමාණය Rs. (Outstanding Principal)</th>
+                      <th className="py-3 px-6 font-bold text-emerald-650 dark:text-emerald-400">ගෙවා නිම කළ ප්‍රමාණය (Paid Dues)</th>
+                      <th className="py-3 px-6 text-right font-bold text-rose-600 dark:text-rose-400">හිඟ මුදල් ප්‍රමාණය Rs. (Outstanding Principal)</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-100 font-semibold text-slate-700">
+                  <tbody className="divide-y divide-slate-100 dark:divide-slate-800 font-semibold text-slate-700 dark:text-slate-300">
                     <tr>
-                      <td className="py-3.5 px-6 text-slate-800">කර්මාන්තශාලා යන්ත්‍රෝපකරණ ණය (Machinery Loan)</td>
+                      <td className="py-3.5 px-6 text-slate-800 dark:text-slate-200">කර්මාන්තශාලා යන්ත්‍රෝපකරණ ණය (Machinery Loan)</td>
                       <td className="py-3.5 px-6">Bank of Ceylon (BOC)</td>
                       <td className="py-3.5 px-6">12.5% per Annum</td>
-                      <td className="py-3.5 px-6 text-emerald-650 font-bold">Rs. 800,000.00</td>
-                      <td className="py-3.5 px-6 text-right font-black text-rose-600">Rs. 1,200,000.00</td>
+                      <td className="py-3.5 px-6 text-emerald-650 dark:text-emerald-400 font-bold">Rs. 800,000.00</td>
+                      <td className="py-3.5 px-6 text-right font-black text-rose-600 dark:text-rose-400">Rs. 1,200,000.00</td>
                     </tr>
                     <tr>
-                      <td className="py-3.5 px-6 text-slate-800">ලොරි රථ ලීසිං පහසුකම (Lorry Lease Finance)</td>
+                      <td className="py-3.5 px-6 text-slate-800 dark:text-slate-200">ලොරි රථ ලීසිං පහසුකම (Lorry Lease Finance)</td>
                       <td className="py-3.5 px-6">Sampath Bank PLC</td>
                       <td className="py-3.5 px-6">14.0% per Annum</td>
-                      <td className="py-3.5 px-6 text-emerald-650 font-bold">Rs. 320,000.00</td>
-                      <td className="py-3.5 px-6 text-right font-black text-rose-600">Rs. 680,000.00</td>
+                      <td className="py-3.5 px-6 text-emerald-650 dark:text-emerald-400 font-bold">Rs. 320,000.00</td>
+                      <td className="py-3.5 px-6 text-right font-black text-rose-600 dark:text-rose-400">Rs. 680,000.00</td>
                     </tr>
                   </tbody>
                 </table>
@@ -638,39 +647,39 @@ export default function ReportsHubPage() {
 
           {/* 10. OTHER LOAN REPORT */}
           {currentView === "other-loans" && (
-            <Card className="rounded-2xl border-slate-200 bg-white p-6 shadow-sm space-y-6 animate-fade-in">
-              <CardHeader className="p-0 pb-4 border-b border-slate-100">
-                <CardTitle className="text-sm font-black text-slate-900 flex items-center gap-2">
+            <Card className="rounded-2xl border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-sm space-y-6 animate-fade-in text-slate-900 dark:text-white">
+              <CardHeader className="p-0 pb-4 border-b border-slate-100 dark:border-slate-800">
+                <CardTitle className="text-sm font-black text-slate-900 dark:text-white flex items-center gap-2">
                   <CircleDollarSign className="w-5 h-5 text-indigo-500" />
                   අනෙකුත් ණය සහ අධ්‍යක්ෂක ප්‍රතිපාදන වාර්තාව (Other Liabilities & Director Loans)
                 </CardTitle>
-                <CardDescription className="text-xs">අධ්‍යක්ෂක මණ්ඩල ප්‍රාග්ධන ණය, ආයතනික කෙටිකාලීන ණය සහ ව්‍යාපාරික හවුල්කාර ණය ප්‍රතිපාදන.</CardDescription>
+                <CardDescription className="text-xs text-slate-500 dark:text-slate-400">අධ්‍යක්ෂක මණ්ඩල ප්‍රාග්ධන ණය, ආයතනික කෙටිකාලීන ණය සහ ව්‍යාපාරික හවුල්කාර ණය ප්‍රතිපාදන.</CardDescription>
               </CardHeader>
-              <div className="overflow-x-auto border border-slate-100 rounded-2xl">
+              <div className="overflow-x-auto border border-slate-100 dark:border-slate-800 rounded-2xl">
                 <table className="w-full text-xs text-left border-collapse">
                   <thead>
-                    <tr className="border-b border-slate-150 bg-slate-50/50 font-bold uppercase tracking-wider text-slate-500 text-[10px]">
+                    <tr className="border-b border-slate-150 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 text-[10px]">
                       <th className="py-3 px-6">ණය හිමිකරු (Creditor Name)</th>
                       <th className="py-3 px-6">ණය වර්ගය (Type)</th>
                       <th className="py-3 px-6">ආරම්භක දිනය (Start Date)</th>
-                      <th className="py-3 px-6 font-bold text-slate-800">ණය කොන්දේසි (Terms)</th>
-                      <th className="py-3 px-6 text-right font-bold text-rose-600">හිඟ මුදල් ප්‍රමාණය Rs. (Outstanding Principal)</th>
+                      <th className="py-3 px-6 font-bold text-slate-800 dark:text-slate-200">ණය කොන්දේසි (Terms)</th>
+                      <th className="py-3 px-6 text-right font-bold text-rose-600 dark:text-rose-400">හිඟ මුදල් ප්‍රමාණය Rs. (Outstanding Principal)</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-100 font-semibold text-slate-700">
+                  <tbody className="divide-y divide-slate-100 dark:divide-slate-800 font-semibold text-slate-700 dark:text-slate-300">
                     <tr>
-                      <td className="py-3.5 px-6 text-slate-800">Mr. S. Wijewardena (Director)</td>
-                      <td className="py-3.5 px-6 text-indigo-650 font-bold">අධ්‍යක්ෂක ණය ප්‍රාග්ධනය (Director Loan)</td>
-                      <td className="py-3.5 px-6">2025-01-15</td>
-                      <td className="py-3.5 px-6 text-slate-400">0% Interest Rate (දිගුකාලීන)</td>
-                      <td className="py-3.5 px-6 text-right font-black text-rose-600">Rs. 300,000.00</td>
+                      <td className="py-3.5 px-6 text-slate-800 dark:text-slate-200">Mr. S. Wijewardena (Director)</td>
+                      <td className="py-3.5 px-6 text-indigo-650 dark:text-indigo-400 font-bold">අධ්‍යක්ෂක ණය ප්‍රාග්ධනය (Director Loan)</td>
+                      <td className="py-3.5 px-6 text-slate-500 dark:text-slate-400">2025-01-15</td>
+                      <td className="py-3.5 px-6 text-slate-400 dark:text-slate-500">0% Interest Rate (දිගුකාලීන)</td>
+                      <td className="py-3.5 px-6 text-right font-black text-rose-600 dark:text-rose-400">Rs. 300,000.00</td>
                     </tr>
                     <tr>
-                      <td className="py-3.5 px-6 text-slate-800">Trade Credits - Raw Chem Ltd</td>
-                      <td className="py-3.5 px-6 text-indigo-650 font-bold">සැපයුම් කෙටිකාලීන ණය (Supplier Trade Credit)</td>
-                      <td className="py-3.5 px-6">2026-05-10</td>
-                      <td className="py-3.5 px-6 text-slate-400">දින 60 ණය කාල සීමාව</td>
-                      <td className="py-3.5 px-6 text-right font-black text-rose-600">Rs. 150,000.00</td>
+                      <td className="py-3.5 px-6 text-slate-800 dark:text-slate-200">Trade Credits - Raw Chem Ltd</td>
+                      <td className="py-3.5 px-6 text-indigo-650 dark:text-indigo-400 font-bold">සැපයුම් කෙටිකාලීන ණය (Supplier Trade Credit)</td>
+                      <td className="py-3.5 px-6 text-slate-500 dark:text-slate-400">2026-05-10</td>
+                      <td className="py-3.5 px-6 text-slate-400 dark:text-slate-500">දින 60 ණය කාල සීමාව</td>
+                      <td className="py-3.5 px-6 text-right font-black text-rose-600 dark:text-rose-400">Rs. 150,000.00</td>
                     </tr>
                   </tbody>
                 </table>
