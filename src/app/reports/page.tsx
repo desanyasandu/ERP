@@ -558,16 +558,16 @@ export default function ReportsHubPage() {
 
           {/* 8. EXPENSES REPORT */}
           {currentView === "expenses-report" && (
-            <Card className="rounded-2xl border-slate-200 bg-white p-6 shadow-sm space-y-6 animate-fade-in">
-              <CardHeader className="p-0 pb-4 border-b border-slate-100">
-                <CardTitle className="text-sm font-black text-rose-700 flex items-center gap-2">
+            <Card className="rounded-2xl border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-sm space-y-6 animate-fade-in text-slate-900 dark:text-white">
+              <CardHeader className="p-0 pb-4 border-b border-slate-100 dark:border-slate-800">
+                <CardTitle className="text-sm font-black text-rose-700 dark:text-rose-400 flex items-center gap-2">
                   <TrendingDown className="w-5 h-5 text-rose-500" />
                   වියදම් කාණ්ඩ විශ්ලේෂණ වාර්තාව (Expense Distribution Analysis)
                 </CardTitle>
-                <CardDescription className="text-xs">කර්මාන්තශාලා මෙහෙයුම් වියදම්, ප්‍රවාහන ඩීසල් ගාස්තු සහ QC වියදම් සංසන්දනාත්මක විශ්ලේෂණය.</CardDescription>
+                <CardDescription className="text-xs text-slate-500 dark:text-slate-400">කර්මාන්තශාලා මෙහෙයුම් වියදම්, ප්‍රවාහන ඩීසල් ගාස්තු සහ QC වියදම් සංසන්දනාත්මක විශ්ලේෂණය.</CardDescription>
               </CardHeader>
               <div className="grid gap-6 md:grid-cols-2">
-                <div className="h-60 border border-slate-100 rounded-2xl p-4 bg-slate-50/20 flex items-center justify-center">
+                <div className="h-60 border border-slate-100 dark:border-slate-800 rounded-2xl p-4 bg-slate-50/20 dark:bg-slate-950/30 flex items-center justify-center">
                   <ResponsiveContainer width="100%" height="100%">
                     <PieChart>
                       <Pie
@@ -583,14 +583,14 @@ export default function ReportsHubPage() {
                           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                         ))}
                       </Pie>
-                      <Tooltip />
+                      <Tooltip contentStyle={{ backgroundColor: isDark ? "#0f172a" : "#ffffff", borderColor: isDark ? "#334155" : "#e2e8f0", color: isDark ? "#f8fafc" : "#0f172a" }} />
                     </PieChart>
                   </ResponsiveContainer>
                 </div>
                 <div className="space-y-3 text-xs pl-4 flex flex-col justify-center">
-                  <h4 className="font-extrabold text-slate-800">වියදම් කාණ්ඩ වෙන්කිරීම (Expense Cost Centers)</h4>
+                  <h4 className="font-extrabold text-slate-800 dark:text-slate-200">වියදම් කාණ්ඩ වෙන්කිරීම (Expense Cost Centers)</h4>
                   {expensesData.map((e, idx) => (
-                    <div key={idx} className="flex justify-between items-center font-bold text-slate-600">
+                    <div key={idx} className="flex justify-between items-center font-bold text-slate-650 dark:text-slate-400">
                       <span className="flex items-center gap-2">
                         <span className="w-3 h-3 rounded-full" style={{ backgroundColor: COLORS[idx % COLORS.length] }} />
                         {e.name}
@@ -689,35 +689,35 @@ export default function ReportsHubPage() {
 
           {/* 11. STAFF REPORT */}
           {currentView === "staff-report" && (
-            <Card className="rounded-2xl border-slate-200 bg-white p-6 shadow-sm space-y-6 animate-fade-in">
-              <CardHeader className="p-0 pb-4 border-b border-slate-100">
-                <CardTitle className="text-sm font-black text-slate-900 flex items-center gap-2">
+            <Card className="rounded-2xl border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 shadow-sm space-y-6 animate-fade-in text-slate-900 dark:text-white">
+              <CardHeader className="p-0 pb-4 border-b border-slate-100 dark:border-slate-800">
+                <CardTitle className="text-sm font-black text-slate-900 dark:text-white flex items-center gap-2">
                   <User className="w-5 h-5 text-indigo-500" />
                   සේවක මණ්ඩල ප්‍රගති සහ පැමිණීමේ වාර්තාව (Staff Attendance & Performance Report)
                 </CardTitle>
-                <CardDescription className="text-xs">කර්මාන්තශාලා සේවකයින්, රියදුරන් සහ කළමනාකාර මණ්ඩලයේ මාසික පැමිණීම සහ OEE ප්‍රගතිය.</CardDescription>
+                <CardDescription className="text-xs text-slate-500 dark:text-slate-400">කර්මාන්තශාලා සේවකයින්, රියදුරන් සහ කළමනාකාර මණ්ඩලයේ මාසික පැමිණීම සහ OEE ප්‍රගතිය.</CardDescription>
               </CardHeader>
               <div className="grid gap-6 md:grid-cols-4">
-                <div className="p-4 bg-indigo-50/40 rounded-2xl border border-indigo-100 text-center text-xs">
-                  <span className="font-bold text-slate-400 block">මුළු සේවක සංඛ්‍යාව</span>
-                  <div className="text-2xl font-black text-indigo-650 mt-1">28 Staff Members</div>
-                  <span className="text-[9px] text-slate-400 font-bold mt-1 block">කර්මාන්තශාලා, කාර්යාල හා රියදුරන්</span>
+                <div className="p-4 bg-indigo-50/40 dark:bg-indigo-950/20 rounded-2xl border border-indigo-100 dark:border-indigo-900/40 text-center text-xs">
+                  <span className="font-bold text-slate-400 dark:text-slate-500 block">මුළු සේවක සංඛ්‍යාව</span>
+                  <div className="text-2xl font-black text-indigo-650 dark:text-indigo-400 mt-1">28 Staff Members</div>
+                  <span className="text-[9px] text-slate-400 dark:text-slate-500 font-bold mt-1 block">කර්මාන්තශාලා, කාර්යාල හා රියදුරන්</span>
                 </div>
-                <div className="p-4 bg-emerald-50/40 rounded-2xl border border-emerald-100 text-center text-xs">
-                  <span className="font-bold text-slate-400 block">සාමාන්‍ය පැමිණීම</span>
-                  <div className="text-2xl font-black text-emerald-650 mt-1">96.8% Attendance</div>
-                  <span className="text-[9px] text-slate-400 font-bold mt-1 block">මැයි මාසය සඳහා සජීවීව</span>
+                <div className="p-4 bg-emerald-50/40 dark:bg-emerald-950/20 rounded-2xl border border-emerald-100 dark:border-emerald-900/40 text-center text-xs">
+                  <span className="font-bold text-slate-400 dark:text-slate-500 block">සාමාන්‍ය පැමිණීම</span>
+                  <div className="text-2xl font-black text-emerald-650 dark:text-emerald-455 mt-1">96.8% Attendance</div>
+                  <span className="text-[9px] text-slate-400 dark:text-slate-500 font-bold mt-1 block">මැයි මාසය සඳහා සජීවීව</span>
                 </div>
-                <div className="p-4 bg-indigo-50/40 rounded-2xl border border-indigo-100 text-center text-xs col-span-2">
-                  <span className="font-bold text-slate-400 block">යන්ත්‍ර මෙහෙයුම් කාර්යක්ෂමතාව (Overall OEE Index)</span>
-                  <div className="text-2xl font-black text-indigo-650 mt-1">92.4% Production OEE</div>
-                  <span className="text-[9px] text-slate-400 font-bold mt-1 block">තත්ත්ව පාලන අංශයේ වාර්තාවට අනුව</span>
+                <div className="p-4 bg-indigo-50/40 dark:bg-indigo-950/20 rounded-2xl border border-indigo-100 dark:border-indigo-900/40 text-center text-xs col-span-2">
+                  <span className="font-bold text-slate-400 dark:text-slate-500 block">යන්ත්‍ර මෙහෙයුම් කාර්යක්ෂමතාව (Overall OEE Index)</span>
+                  <div className="text-2xl font-black text-indigo-650 dark:text-indigo-400 mt-1">92.4% Production OEE</div>
+                  <span className="text-[9px] text-slate-400 dark:text-slate-500 font-bold mt-1 block">තත්ත්ව පාලන අංශයේ වාර්තාවට අනුව</span>
                 </div>
               </div>
-              <div className="overflow-x-auto border border-slate-100 rounded-2xl">
+              <div className="overflow-x-auto border border-slate-100 dark:border-slate-800 rounded-2xl">
                 <table className="w-full text-xs text-left border-collapse">
                   <thead>
-                    <tr className="border-b border-slate-150 bg-slate-50/50 font-bold uppercase tracking-wider text-slate-500 text-[10px]">
+                    <tr className="border-b border-slate-150 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 text-[10px]">
                       <th className="py-3 px-6">සේවකයා (Employee Name)</th>
                       <th className="py-3 px-6">අංශය (Department)</th>
                       <th className="py-3 px-6">පැමිණීම (Attendance)</th>
@@ -725,27 +725,27 @@ export default function ReportsHubPage() {
                       <th className="py-3 px-6 text-right">OEE ශ්‍රේණිය (QC Level)</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-100 font-semibold text-slate-700">
+                  <tbody className="divide-y divide-slate-100 dark:divide-slate-800 font-semibold text-slate-700 dark:text-slate-350">
                     <tr>
-                      <td className="py-3 px-6 font-bold text-slate-900">Nimal Perera</td>
-                      <td className="py-3 px-6 text-slate-500">ප්‍රවාහන (Logistics Lorry Driver)</td>
-                      <td className="py-3 px-6 text-slate-500">98% (25 Days)</td>
-                      <td className="py-3 px-6 text-emerald-600">විශිෂ්ටයි (Excellent)</td>
-                      <td className="py-3 px-6 text-right"><span className="bg-emerald-50 text-emerald-700 border border-emerald-100 rounded-xl px-2 py-0.5 font-bold">Grade A</span></td>
+                      <td className="py-3 px-6 font-bold text-slate-900 dark:text-white">Nimal Perera</td>
+                      <td className="py-3 px-6 text-slate-500 dark:text-slate-400">ප්‍රවාහන (Logistics Lorry Driver)</td>
+                      <td className="py-3 px-6 text-slate-500 dark:text-slate-400">98% (25 Days)</td>
+                      <td className="py-3 px-6 text-emerald-600 dark:text-emerald-450">විශිෂ්ටයි (Excellent)</td>
+                      <td className="py-3 px-6 text-right"><span className="bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-900/50 rounded-xl px-2 py-0.5 font-bold">Grade A</span></td>
                     </tr>
                     <tr>
-                      <td className="py-3 px-6 font-bold text-slate-900">Kamal Silva</td>
-                      <td className="py-3 px-6 text-slate-500">යන්ත්‍ර ක්‍රියාකාරී (Factory Operator)</td>
-                      <td className="py-3 px-6 text-slate-500">96% (24 Days)</td>
-                      <td className="py-3 px-6 text-slate-600">ස්ථායී (Stable)</td>
-                      <td className="py-3 px-6 text-right"><span className="bg-slate-50 text-slate-600 border border-slate-200 rounded-xl px-2 py-0.5 font-bold">Grade B</span></td>
+                      <td className="py-3 px-6 font-bold text-slate-900 dark:text-white">Kamal Silva</td>
+                      <td className="py-3 px-6 text-slate-500 dark:text-slate-400">යන්ත්‍ර ක්‍රියාකාරී (Factory Operator)</td>
+                      <td className="py-3 px-6 text-slate-500 dark:text-slate-400">96% (24 Days)</td>
+                      <td className="py-3 px-6 text-slate-600 dark:text-slate-400">ස්ථායී (Stable)</td>
+                      <td className="py-3 px-6 text-right"><span className="bg-slate-50 dark:bg-slate-800/40 text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700 rounded-xl px-2 py-0.5 font-bold">Grade B</span></td>
                     </tr>
                     <tr>
-                      <td className="py-3 px-6 font-bold text-slate-900">Ruwan Gunawardena</td>
-                      <td className="py-3 px-6 text-slate-500">තත්ත්ව පාලන (QC Officer)</td>
-                      <td className="py-3 px-6 text-slate-500">100% (26 Days)</td>
-                      <td className="py-3 px-6 text-emerald-600">ඉහළම කාර්යක්ෂමතාව (Outstanding)</td>
-                      <td className="py-3 px-6 text-right"><span className="bg-emerald-50 text-emerald-700 border border-emerald-100 rounded-xl px-2 py-0.5 font-bold">Grade A+</span></td>
+                      <td className="py-3 px-6 font-bold text-slate-900 dark:text-white">Ruwan Gunawardena</td>
+                      <td className="py-3 px-6 text-slate-500 dark:text-slate-400">තත්ත්ව පාලන (QC Officer)</td>
+                      <td className="py-3 px-6 text-slate-500 dark:text-slate-400">100% (26 Days)</td>
+                      <td className="py-3 px-6 text-emerald-600 dark:text-emerald-450">ඉහළම කාර්යක්ෂමතාව (Outstanding)</td>
+                      <td className="py-3 px-6 text-right"><span className="bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-400 border border-emerald-100 dark:border-emerald-900/50 rounded-xl px-2 py-0.5 font-bold">Grade A+</span></td>
                     </tr>
                   </tbody>
                 </table>
