@@ -145,9 +145,9 @@ export default function TopNav() {
               href="/"
               className={cn(
                 "px-3 py-2 rounded-xl transition-all duration-200",
-                pathname === "/"
-                  ? "bg-slate-50 dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 font-bold"
-                  : "text-slate-600 hover:text-slate-900 dark:text-slate-350 dark:hover:text-white hover:bg-slate-50/50 dark:hover:bg-slate-800/30"
+                pathname === "/" && !pathname.includes("operations") && !pathname.includes("finance") && !pathname.includes("reports")
+                  ? "bg-slate-50 dark:bg-slate-800 text-indigo-650 dark:text-indigo-400 font-bold"
+                  : "text-slate-650 hover:text-slate-950 dark:text-slate-350 dark:hover:text-white hover:bg-slate-50/50 dark:hover:bg-slate-800/30"
               )}
             >
               පුවරුව (Dashboard)
@@ -161,7 +161,7 @@ export default function TopNav() {
                   "px-3 py-2 rounded-xl flex items-center gap-1 transition-all duration-200",
                   pathname.startsWith("/production")
                     ? "bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 font-bold"
-                    : "text-slate-600 hover:text-slate-900 dark:text-slate-350 dark:hover:text-white hover:bg-slate-50/50 dark:hover:bg-slate-800/30"
+                    : "text-slate-650 hover:text-slate-950 dark:text-slate-350 dark:hover:text-white hover:bg-slate-50/50 dark:hover:bg-slate-800/30"
                 )}
               >
                 <span>නිෂ්පාදනය (Production)</span>
@@ -202,7 +202,7 @@ export default function TopNav() {
                   "px-3 py-2 rounded-xl flex items-center gap-1 transition-all duration-200",
                   pathname.startsWith("/inventory")
                     ? "bg-amber-50 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400 font-bold"
-                    : "text-slate-600 hover:text-slate-900 dark:text-slate-350 dark:hover:text-white hover:bg-slate-50/50 dark:hover:bg-slate-800/30"
+                    : "text-slate-655 hover:text-slate-950 dark:text-slate-350 dark:hover:text-white hover:bg-slate-50/50 dark:hover:bg-slate-800/30"
                 )}
               >
                 <span>තොග කළමනාකරණය (Inventory)</span>
@@ -235,139 +235,256 @@ export default function TopNav() {
               </div>
             </div>
 
-            {/* Sales Menu */}
+            {/* Operations Menu [NEW] */}
             <div className="relative group py-2">
               <Link
-                href="/sales"
+                href="/operations"
                 className={cn(
                   "px-3 py-2 rounded-xl flex items-center gap-1 transition-all duration-200",
-                  pathname.startsWith("/sales")
-                    ? "bg-violet-50 dark:bg-violet-950/40 text-violet-600 dark:text-violet-400 font-bold"
-                    : "text-slate-600 hover:text-slate-900 dark:text-slate-350 dark:hover:text-white hover:bg-slate-50/50 dark:hover:bg-slate-800/30"
+                  pathname.startsWith("/operations")
+                    ? "bg-indigo-50 dark:bg-indigo-950/40 text-indigo-650 dark:text-indigo-400 font-bold"
+                    : "text-slate-650 hover:text-slate-950 dark:text-slate-350 dark:hover:text-white hover:bg-slate-50/50 dark:hover:bg-slate-800/30"
                 )}
               >
-                <span>අලෙවිය (Sales)</span>
+                <span>මෙහෙයුම් (Operations)</span>
+                <ChevronDown className="w-3.5 h-3.5 text-slate-400 group-hover:rotate-180 transition-transform duration-250" />
+              </Link>
+
+              {/* Flyout Sub-menu */}
+              <div className="absolute left-0 top-full pt-1 hidden group-hover:block w-64 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xl p-1.5 z-50 animate-fade-in">
+                <Link
+                  href="/operations?view=client"
+                  className="flex items-center gap-2 px-3.5 py-2 text-[11px] font-semibold text-slate-700 dark:text-slate-300 hover:bg-indigo-50/50 dark:hover:bg-indigo-950/20 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-xl transition"
+                >
+                  <User className="w-3.5 h-3.5" />
+                  ගනුදෙනුකරුවන් (Client Registry)
+                </Link>
+                <Link
+                  href="/operations?view=sales"
+                  className="flex items-center gap-2 px-3.5 py-2 text-[11px] font-semibold text-slate-700 dark:text-slate-300 hover:bg-indigo-50/50 dark:hover:bg-indigo-950/20 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-xl transition"
+                >
+                  <CircleDollarSign className="w-3.5 h-3.5" />
+                  අලෙවි ලෙජරය (Sales Registry)
+                </Link>
+                <Link
+                  href="/operations?view=recovery"
+                  className="flex items-center gap-2 px-3.5 py-2 text-[11px] font-semibold text-slate-700 dark:text-slate-300 hover:bg-indigo-50/50 dark:hover:bg-indigo-950/20 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-xl transition"
+                >
+                  <TrendingUp className="w-3.5 h-3.5" />
+                  අයකරගැනීම් (Recovery Tracker)
+                </Link>
+                <Link
+                  href="/operations?view=stock"
+                  className="flex items-center gap-2 px-3.5 py-2 text-[11px] font-semibold text-slate-700 dark:text-slate-300 hover:bg-indigo-50/50 dark:hover:bg-indigo-950/20 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-xl transition"
+                >
+                  <Boxes className="w-3.5 h-3.5" />
+                  තොග පාලනය (Chemical & SKU Stock)
+                </Link>
+                <Link
+                  href="/operations?view=supplier"
+                  className="flex items-center gap-2 px-3.5 py-2 text-[11px] font-semibold text-slate-700 dark:text-slate-300 hover:bg-indigo-50/50 dark:hover:bg-indigo-950/20 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-xl transition"
+                >
+                  <Package className="w-3.5 h-3.5" />
+                  සැපයුම්කරුවන් (Supplier Directory)
+                </Link>
+                <Link
+                  href="/operations?view=expenses"
+                  className="flex items-center gap-2 px-3.5 py-2 text-[11px] font-semibold text-slate-700 dark:text-slate-300 hover:bg-indigo-50/50 dark:hover:bg-indigo-950/20 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-xl transition"
+                >
+                  <CircleDollarSign className="w-3.5 h-3.5 text-rose-500" />
+                  වියදම් කළමනාකරණය (Expenses)
+                </Link>
+                <Link
+                  href="/operations?view=credit"
+                  className="flex items-center gap-2 px-3.5 py-2 text-[11px] font-semibold text-slate-700 dark:text-slate-300 hover:bg-indigo-50/50 dark:hover:bg-indigo-950/20 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-xl transition"
+                >
+                  <Info className="w-3.5 h-3.5" />
+                  ණයහිමි කළමනාකරණය (Credit)
+                </Link>
+                <Link
+                  href="/operations?view=debt"
+                  className="flex items-center gap-2 px-3.5 py-2 text-[11px] font-semibold text-slate-700 dark:text-slate-300 hover:bg-indigo-50/50 dark:hover:bg-indigo-950/20 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-xl transition"
+                >
+                  <Info className="w-3.5 h-3.5" />
+                  ණයගැති පාලනය (Debt Ledger)
+                </Link>
+                <Link
+                  href="/operations?view=managers"
+                  className="flex items-center gap-2 px-3.5 py-2.5 border-t border-slate-100 dark:border-slate-800 text-[11px] font-bold text-slate-800 dark:text-slate-200 hover:bg-indigo-50/70 dark:hover:bg-indigo-950/40 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-b-xl transition"
+                >
+                  <User className="w-3.5 h-3.5 text-indigo-500" />
+                  කළමනාකාර නාමාවලිය (Managers)
+                </Link>
+              </div>
+            </div>
+
+            {/* Finance Menu [NEW] */}
+            <div className="relative group py-2">
+              <Link
+                href="/finance"
+                className={cn(
+                  "px-3 py-2 rounded-xl flex items-center gap-1 transition-all duration-200",
+                  pathname.startsWith("/finance")
+                    ? "bg-violet-50 dark:bg-violet-950/40 text-violet-650 dark:text-violet-400 font-bold"
+                    : "text-slate-650 hover:text-slate-950 dark:text-slate-350 dark:hover:text-white hover:bg-slate-50/50 dark:hover:bg-slate-800/30"
+                )}
+              >
+                <span>මූල්‍ය පද්ධතිය (Finance)</span>
                 <ChevronDown className="w-3.5 h-3.5 text-slate-400 group-hover:rotate-180 transition-transform duration-250" />
               </Link>
 
               {/* Flyout Sub-menu */}
               <div className="absolute left-0 top-full pt-1 hidden group-hover:block w-56 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xl p-1.5 z-50 animate-fade-in">
                 <Link
-                  href="/sales?view=revenue"
+                  href="/finance?view=cashbook"
+                  className="flex items-center gap-2 px-3.5 py-2.5 text-[11px] font-semibold text-slate-700 dark:text-slate-300 hover:bg-violet-50/50 dark:hover:bg-violet-950/20 hover:text-violet-600 dark:hover:text-violet-400 rounded-xl transition"
+                >
+                  <Boxes className="w-3.5 h-3.5" />
+                  මුදල් පොත් (Cash Books)
+                </Link>
+                <Link
+                  href="/finance?view=pandl"
                   className="flex items-center gap-2 px-3.5 py-2.5 text-[11px] font-semibold text-slate-700 dark:text-slate-300 hover:bg-violet-50/50 dark:hover:bg-violet-950/20 hover:text-violet-600 dark:hover:text-violet-400 rounded-xl transition"
                 >
                   <CircleDollarSign className="w-3.5 h-3.5" />
-                  දෛනික විකුණුම් ආදායම (Revenue)
+                  ලාභ අලාභ ගිණුම (P&L)
                 </Link>
                 <Link
-                  href="/sales?view=ledger"
+                  href="/finance?view=cashflow"
                   className="flex items-center gap-2 px-3.5 py-2.5 text-[11px] font-semibold text-slate-700 dark:text-slate-300 hover:bg-violet-50/50 dark:hover:bg-violet-950/20 hover:text-violet-600 dark:hover:text-violet-400 rounded-xl transition"
                 >
-                  <Sparkles className="w-3.5 h-3.5" />
-                  ඉන්වොයිස් ලෙජරය (Ledger)
+                  <TrendingUp className="w-3.5 h-3.5" />
+                  මුදල් ප්‍රවාහ ප්‍රකාශය (Cash Flow)
                 </Link>
                 <Link
-                  href="/sales?view=pettycash"
+                  href="/finance?view=balancesheet"
                   className="flex items-center gap-2 px-3.5 py-2.5 text-[11px] font-semibold text-slate-700 dark:text-slate-300 hover:bg-violet-50/50 dark:hover:bg-violet-950/20 hover:text-violet-600 dark:hover:text-violet-400 rounded-xl transition"
                 >
-                  <Info className="w-3.5 h-3.5" />
-                  සුළු මුදල් අත්තිකාරම් (Petty Cash)
+                  <FileBarChart2 className="w-3.5 h-3.5" />
+                  ශේෂ පත්‍රය (Balance Sheet)
                 </Link>
               </div>
             </div>
 
-            {/* Reports Menu (Multi-Level) */}
+            {/* Reports Menu (Expanded to 11 Reports) */}
             <div className="relative group py-2">
-              <button
-                className="px-3 py-2 rounded-xl flex items-center gap-1 text-slate-600 hover:text-slate-900 dark:text-slate-350 dark:hover:text-white hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-all duration-200"
+              <Link
+                href="/reports"
+                className={cn(
+                  "px-3 py-2 rounded-xl flex items-center gap-1 transition-all duration-200",
+                  pathname.startsWith("/reports")
+                    ? "bg-indigo-50 dark:bg-indigo-950/40 text-indigo-650 dark:text-indigo-400 font-bold"
+                    : "text-slate-655 hover:text-slate-950 dark:text-slate-355 dark:hover:text-white hover:bg-slate-50/50 dark:hover:bg-slate-800/30"
+                )}
               >
-                <span>වාර්තා (Reports)</span>
+                <span>වාර්තා (Reports Hub)</span>
                 <ChevronDown className="w-3.5 h-3.5 text-slate-400 group-hover:rotate-180 transition-transform duration-250" />
-              </button>
+              </Link>
 
-              {/* Flyout Sub-menu (First level) */}
-              <div className="absolute left-0 top-full pt-1 hidden group-hover:block w-60 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xl p-1.5 z-50 animate-fade-in">
+              {/* Flyout Sub-menu (Multi-Level) */}
+              <div className="absolute left-0 top-full pt-1 hidden group-hover:block w-72 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xl p-1.5 z-50 animate-fade-in">
                 
-                {/* 1. Outlet Base Report */}
+                {/* 1. Sales & Credit Reports */}
                 <div className="relative group/submenu">
-                  <div className="flex items-center justify-between px-3.5 py-2.5 text-[11px] font-semibold text-slate-700 dark:text-slate-300 hover:bg-indigo-50/50 dark:hover:bg-indigo-950/20 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-xl cursor-pointer transition">
+                  <div className="flex items-center justify-between px-3.5 py-2 text-[11px] font-semibold text-slate-700 dark:text-slate-300 hover:bg-indigo-50/50 dark:hover:bg-indigo-950/20 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-xl cursor-pointer transition">
                     <span className="flex items-center gap-2">
-                      <FileBarChart2 className="w-3.5 h-3.5" />
-                      අලෙවිසැල් විකුණුම් වාර්තා (Outlet Reports)
+                      <FileBarChart2 className="w-3.5 h-3.5 text-indigo-550" />
+                      විකුණුම් සහ ණය (Sales & Credit)
                     </span>
                     <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
                   </div>
-                  {/* Flyout Level 2 */}
-                  <div className="absolute left-full top-0 ml-1.5 hidden group-hover/submenu:block w-52 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xl p-1.5 z-50">
+                  <div className="absolute left-full top-0 ml-1.5 hidden group-hover/submenu:block w-56 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xl p-1.5 z-50">
                     <Link
-                      href="/reports?view=outlet-summary"
+                      href="/reports?view=sales-report"
                       className="block px-3.5 py-2 text-[10px] font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-xl transition"
                     >
-                      විකුණුම් සාරාංශය (Summary)
+                      විකුණුම් වාර්තාව (Sales Report)
                     </Link>
                     <Link
-                      href="/reports?view=outlet-sales"
+                      href="/reports?view=recovery-report"
                       className="block px-3.5 py-2 text-[10px] font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-xl transition"
                     >
-                      අලෙවිසැල් විකුණුම් (Sales)
+                      අයකරගැනීම් වාර්තාව (Recovery)
                     </Link>
                     <Link
-                      href="/reports?view=outlet-regional"
+                      href="/reports?view=creditors-report"
                       className="block px-3.5 py-2 text-[10px] font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-xl transition"
                     >
-                      ප්‍රාදේශීය කාර්යසාධනය (Regional)
+                      ණයහිමියන්ගේ වාර්තාව (Creditors)
+                    </Link>
+                    <Link
+                      href="/reports?view=debtors-report"
+                      className="block px-3.5 py-2 text-[10px] font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-xl transition"
+                    >
+                      ණයගැතියන්ගේ වාර්තාව (Debtors)
                     </Link>
                   </div>
                 </div>
 
-                {/* 2. Financial Statement */}
+                {/* 2. Stocks & Fixed Assets */}
                 <div className="relative group/submenu">
-                  <div className="flex items-center justify-between px-3.5 py-2.5 text-[11px] font-semibold text-slate-700 dark:text-slate-300 hover:bg-indigo-50/50 dark:hover:bg-indigo-950/20 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-xl cursor-pointer transition">
+                  <div className="flex items-center justify-between px-3.5 py-2 text-[11px] font-semibold text-slate-700 dark:text-slate-300 hover:bg-indigo-50/50 dark:hover:bg-indigo-950/20 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-xl cursor-pointer transition">
                     <span className="flex items-center gap-2">
-                      <CircleDollarSign className="w-3.5 h-3.5" />
-                      මූල්‍ය ප්‍රකාශන (Financial Statements)
+                      <Boxes className="w-3.5 h-3.5 text-amber-550" />
+                      තොග සහ ස්ථාවර වත්කම් (Stocks & Assets)
                     </span>
                     <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
                   </div>
-                  {/* Flyout Level 2 */}
-                  <div className="absolute left-full top-0 ml-1.5 hidden group-hover/submenu:block w-52 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xl p-1.5 z-50">
+                  <div className="absolute left-full top-0 ml-1.5 hidden group-hover/submenu:block w-56 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xl p-1.5 z-50">
                     <Link
-                      href="/reports?view=fin-cost"
+                      href="/reports?view=chemical-stocks"
                       className="block px-3.5 py-2 text-[10px] font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-xl transition"
                     >
-                      පිරිවැය විශ්ලේෂණය (Cost Analysis)
+                      රසායනික ද්‍රව්‍ය තොගය (Chemicals)
                     </Link>
                     <Link
-                      href="/reports?view=fin-cashflow"
+                      href="/reports?view=finished-goods"
                       className="block px-3.5 py-2 text-[10px] font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-xl transition"
                     >
-                      මුදල් ප්‍රවාහ ලෙජරය (Cash Flow)
+                      නිමි භාණ්ඩ තොගය (Finished Goods)
+                    </Link>
+                    <Link
+                      href="/reports?view=fixed-assets"
+                      className="block px-3.5 py-2 text-[10px] font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-xl transition"
+                    >
+                      ස්ථාවර වත්කම් වාර්තාව (Assets)
                     </Link>
                   </div>
                 </div>
 
-                {/* 3. Production Efficiency */}
+                {/* 3. Expenses, Loans & Personnel */}
                 <div className="relative group/submenu">
-                  <div className="flex items-center justify-between px-3.5 py-2.5 text-[11px] font-semibold text-slate-700 dark:text-slate-300 hover:bg-indigo-50/50 dark:hover:bg-indigo-950/20 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-xl cursor-pointer transition">
+                  <div className="flex items-center justify-between px-3.5 py-2 text-[11px] font-semibold text-slate-700 dark:text-slate-300 hover:bg-indigo-50/50 dark:hover:bg-indigo-950/20 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-xl cursor-pointer transition">
                     <span className="flex items-center gap-2">
-                      <Factory className="w-3.5 h-3.5" />
-                      නිෂ්පාදන කාර්යක්ෂමතාව (Efficiency)
+                      <Factory className="w-3.5 h-3.5 text-emerald-550" />
+                      වියදම්, ණය සහ සේවකයින්
                     </span>
                     <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
                   </div>
-                  {/* Flyout Level 2 */}
-                  <div className="absolute left-full top-0 ml-1.5 hidden group-hover/submenu:block w-52 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xl p-1.5 z-50">
+                  <div className="absolute left-full top-0 ml-1.5 hidden group-hover/submenu:block w-56 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xl p-1.5 z-50">
                     <Link
-                      href="/reports?view=eff-runtime"
+                      href="/reports?view=expenses-report"
                       className="block px-3.5 py-2 text-[10px] font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-xl transition"
                     >
-                      මැෂින් ක්‍රියාකාරී කාලය (Runtime)
+                      වියදම් වාර්තාව (Expenses Report)
                     </Link>
                     <Link
-                      href="/reports?view=eff-defect"
+                      href="/reports?view=bank-loans"
                       className="block px-3.5 py-2 text-[10px] font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-xl transition"
                     >
-                      දෝෂ අනුපාතය (Defect Rate)
+                      බැංකු ණය වාර්තාව (Bank Loans)
+                    </Link>
+                    <Link
+                      href="/reports?view=other-loans"
+                      className="block px-3.5 py-2 text-[10px] font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-xl transition"
+                    >
+                      අනෙකුත් ණය වාර්තාව (Other Loans)
+                    </Link>
+                    <Link
+                      href="/reports?view=staff-report"
+                      className="block px-3.5 py-2 text-[10px] font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/50 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-xl transition"
+                    >
+                      සේවක මණ්ඩල වාර්තාව (Staff Report)
                     </Link>
                   </div>
                 </div>
